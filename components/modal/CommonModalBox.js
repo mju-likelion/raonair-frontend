@@ -24,6 +24,7 @@ const CloseSvg = styled.img`
   height: 15px;
   margin-top: 24px;
   margin-right: 33px;
+  cursor: pointer;
 `;
 
 const ModalTitle = styled.h4`

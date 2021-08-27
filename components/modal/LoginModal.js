@@ -46,6 +46,7 @@ const LoginSubmit = styled.button`
   background-color: #49b0ff;
   color: white;
   font-size: 16px;
+  cursor: pointer;
 `;
 
 const FindPasswordBtn = styled(Link)`
