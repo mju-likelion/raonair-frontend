@@ -132,7 +132,7 @@ const LoginModal = ({ onClose }) => {
           {/* eslint-enable */}
         </LoginFormBox>
         <FindPasswordBtn href='/auth/password-find' onClick={onClose}>
-          <a href='#!'>비밀번호 찾기</a>
+          <a>비밀번호 찾기</a>
         </FindPasswordBtn>
       </LoginBox>
     </>
