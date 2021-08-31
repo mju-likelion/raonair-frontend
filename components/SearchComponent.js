@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { useState, useEffect, useCallback } from 'react';
-// import { Redirect } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import styled, { css } from 'styled-components';
 
@@ -144,7 +143,7 @@ const SearchComponent = () => {
           },
         } = await axios({
           method: 'GET',
-          url: `${process.env.REACT_APP_SERVER_ORIGIN}/api/search/play-options`,
+          url: `http://3.38.8.220/api/search/play-options`,
         });
         return setSearchOptions(playOptions);
       } catch (err) {
@@ -201,11 +200,11 @@ const SearchComponent = () => {
           라온에어에 오신걸 환영합니다. 원하시는 연극 또는 극단을 검색해 주세요.
         </HeadLine>
         <SearchTargetBox>
-          <HighlightBoxPlay highlight={selectedTarget}>
-            <SearchTarget onClick={handleClick}>연극</SearchTarget>
+          <HighlightBoxPlay highlight={selectedTarget} onClick={handleClick}>
+            <SearchTarget>연극</SearchTarget>
           </HighlightBoxPlay>
-          <HighlightBoxTroupe highlight={selectedTarget}>
-            <SearchTarget onClick={handleClick}>극단</SearchTarget>
+          <HighlightBoxTroupe highlight={selectedTarget} onClick={handleClick}>
+            <SearchTarget>극단</SearchTarget>
           </HighlightBoxTroupe>
         </SearchTargetBox>
         {/* {redirect && (
