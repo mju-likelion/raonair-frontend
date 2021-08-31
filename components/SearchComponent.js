@@ -8,8 +8,7 @@ import { searchTargetState } from '../globalState/search';
 const Background = styled.div`
   height: 100vh;
   width: 100%;
-  background: url('../mainPageBackground.png')
-    no-repeat;
+  background: url('../mainPageBackground.png'), no-repeat;
   background-size: 100% 658px;
   display: flex;
   flex-direction: column;
@@ -160,7 +159,7 @@ const SearchComponent = () => {
       },
     }) => {
       const target = innerText === '연극' ? 'play' : 'troupe';
-      setSearchTarget({...searchTarget, target});
+      setSearchTarget({ ...searchTarget, target });
       setSelectedTarget(target);
     },
     [searchTarget, setSearchTarget],
@@ -168,13 +167,11 @@ const SearchComponent = () => {
 
   const handleChange = useCallback(
     ({ target: { value, name } }) => {
-      if(name === 'location') {
-        setSearchCondition({...searchCondition, type: '', [name]: value});
-      }
-      else if(name === 'type') {
-        setSearchCondition({...searchCondition, location: '', [name]: value})
-      }
-      else{
+      if (name === 'location') {
+        setSearchCondition({ ...searchCondition, type: '', [name]: value });
+      } else if (name === 'type') {
+        setSearchCondition({ ...searchCondition, location: '', [name]: value });
+      } else {
         setSearchCondition({ ...searchCondition, [name]: value });
       }
     },
@@ -183,7 +180,9 @@ const SearchComponent = () => {
 
   const handleKeyPress = ({ key }) => {
     if (key === 'Enter') {
-      const a = searchCondition.location ? `location=${searchCondition.location}` : `type=${searchCondition.type}`;
+      const a = searchCondition.location
+        ? `location=${searchCondition.location}`
+        : `type=${searchCondition.type}`;
       setOptionQuery(a);
       setRedirect(true);
     }

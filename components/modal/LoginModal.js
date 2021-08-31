@@ -1,10 +1,9 @@
 import { useFormik } from 'formik';
+import Link from 'next/link';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import styled, { css } from 'styled-components';
 import * as Yup from 'yup';
-
-import Link from 'next/link';
 
 import ModalBox, { CloseBox, CloseSvg, ModalTitle } from './CommonModalBox';
 
@@ -133,7 +132,7 @@ const LoginModal = ({ onClose }) => {
           {/* eslint-enable */}
         </LoginFormBox>
         <FindPasswordBtn href='/auth/password-find' onClick={onClose}>
-          <a>비밀번호 찾기</a>
+          <a href='#!'>비밀번호 찾기</a>
         </FindPasswordBtn>
       </LoginBox>
     </>
