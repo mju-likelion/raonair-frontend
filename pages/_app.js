@@ -10,13 +10,7 @@ function MyApp({ Component, pageProps }) {
 
 export default MyApp
 MyApp.propTypes = {
-  Component: PropTypes.objectOf(
-    PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.bool,
-      PropTypes.objectOf(PropTypes.string),
-    ]),
-  ).isRequired,
+  Component: PropTypes.func.isRequired,
   pageProps: PropTypes.objectOf(
     PropTypes.oneOfType([
       PropTypes.string,

@@ -6,9 +6,10 @@ import styled, { css } from 'styled-components';
 import { searchTargetState } from '../globalState/search';
 
 const Background = styled.div`
-  height: 100vh;
+  height: 658px;
   width: 100%;
-  background: url('../mainPageBackground.png'), no-repeat;
+  background: url('../mainPageBackground.png');
+  background-repeat: no-repeat;
   background-size: 100% 658px;
   display: flex;
   flex-direction: column;
