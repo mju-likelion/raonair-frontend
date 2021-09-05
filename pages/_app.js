@@ -1,21 +1,18 @@
-import PropTypes from 'prop-types';
+import { RecoilRoot } from 'recoil';
 
 import '../styles/globals.css'
 
+import SetGlobalStyles from '../components/GlobalStyles';
+import Header from '../components/Header';
+
 function MyApp({ Component, pageProps }) {
   return (
+    <RecoilRoot>
+      <SetGlobalStyles/>
+      <Header/>
       <Component {...pageProps} />
+    </RecoilRoot>
   );
 }
 
 export default MyApp
-MyApp.propTypes = {
-  Component: PropTypes.func.isRequired,
-  pageProps: PropTypes.objectOf(
-    PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.bool,
-      PropTypes.objectOf(PropTypes.string),
-    ]),
-  ).isRequired,
-}
