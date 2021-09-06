@@ -7,16 +7,15 @@ const PlayBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  align-items: center;
-  margin-right: 37px;
-  margin-left: 37px;
+  margin-right: 48px;
+  margin-left: 48px;
   box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
   border-radius: 6px;
+  cursor: pointer;
 `;
 
 const JudgeBox = styled.div`
   height: 28px;
-  width: 240px;
   display: flex;
   align-items: center;
 `;
@@ -40,25 +39,27 @@ const JudgeImg = styled.img`
 `;
 
 const PlayImage = styled.img`
-  height: 299px;
-  width: 213px;
+  margin: 0 auto;
+  height: 279px;
+  width: 192px;
   border-radius: 6px;
 `;
 
 const PlayTitle = styled.h4`
   font-size: 20px;
   margin: 0 4px 5px 0;
+  text-align: center;
 `;
 
 const PlayDate = styled.p`
+  text-align: center;
+  color: #22222280;
   font-size: 18px;
   font-weight: lighter;
   margin: 0;
 `;
 
 const PlayComponent = ({ play }) => {
-  // eslint-disable-next-line no-console
-  console.log(play)
   const {
     // poster,
     title,
@@ -68,11 +69,8 @@ const PlayComponent = ({ play }) => {
     end_date: endDate,
   } = play;
   return (
-    <>
+    <PlayBox>
       <JudgeBox>
-        <div>
-          {play.title}
-        </div>
         <Judge>
           <JudgeImg src='/svg/star.svg' alt='평점' />
           {starAvg}
@@ -85,11 +83,9 @@ const PlayComponent = ({ play }) => {
       {/* 포스터 이미지 구현 후 수정 필요 */}
       <PlayImage src='/svg/poster_default.svg' />
       <PlayTitle>{title}</PlayTitle>
-      <PlayDate>{`${startDate} ~ ${endDate || ''}`}</PlayDate>
-    </>
+      <PlayDate>{`${startDate} ~ ${endDate || '별도 안내'}`}</PlayDate>
+    </PlayBox>
   );
 };
-
-export {PlayBox};
 
 export default PlayComponent;
