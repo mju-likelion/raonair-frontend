@@ -7,7 +7,7 @@ import SearchComponent from '../components/SearchComponent';
 const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
-  /* max-width: 1280px; */
+  min-width: 1280px;
   margin: 0 auto;
   .intro {
     margin: 99px auto;
@@ -38,21 +38,26 @@ const Section = styled.div`
   max-height: 645px;
   background-color: #F6F6F6;
   .plays {
-    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1120px;
+    height: 400px;
+    list-style: none;
   }
 `;
 
 const Theame = styled.h4`
   font-size: 36px;
   text-align: center;
-  margin-bottom: 13px;
+  margin-bottom: 31px;
 `;
 
-const Home = ({ ongoingPlays }) => {
+const Home = ({ ongoingPlays, tobePlays }) => {
   return (
     <>
-      <SearchComponent />
       <MainContainer>
+      <SearchComponent />
         <div className='intro'>
           <Theame>다양한 공연을 라온에어와 함께 만나보세요</Theame>
           {/* 클릭으로 포커스를 맞출지, 페이지 이동을 할지 미정 */}
@@ -76,15 +81,19 @@ const Home = ({ ongoingPlays }) => {
           <Theame>
             INDIE
           </Theame>
-          <ul>
+          <div className='plays'>
             { ongoingPlays && ongoingPlays.map(play =>
-              <li key={play.id}><PlayComponent play={play} /></li>) }
-          </ul>
+              <div key={play.id}><PlayComponent play={play} /></div>) }
+          </div>
         </Section>
         <Section>
           <Theame>
             NEW TEAM&apos;S PLAY
           </Theame>
+          <div className='plays'>
+            { tobePlays && tobePlays.map(play =>
+              <div key={play.id}><PlayComponent play={play} /></div>) }
+          </div>
         </Section>
         <Section>
           <Theame>
@@ -103,14 +112,15 @@ const Home = ({ ongoingPlays }) => {
 
 
 export async function getServerSideProps() {
-  // 임시적 api
+  // 임시 api, 추천 관련 api 구현 필요함
   const API_KEY = process.env.NEXT_APP_API_KEY;
   const res = await axios.get(`${API_KEY}/api/search/play`);
   const data = await res.data.data;
   const ongoingPlays = data.searched_results.ongoing_plays;
+  const tobePlays = data.searched_results.tobe_plays;
   
   return {
-    props: { ongoingPlays }
+    props: { ongoingPlays, tobePlays }
   }
 }
 
