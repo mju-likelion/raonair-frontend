@@ -1,6 +1,7 @@
 import axios from 'axios';
 import styled from 'styled-components';
 
+import PlayComponent from '../components/PlayComponent';
 import SearchComponent from '../components/SearchComponent';
 
 const MainContainer = styled.div`
@@ -33,18 +34,21 @@ const MainContainer = styled.div`
 `;
 
 const Section = styled.div`
-  height: 645px;
-  .indie {
-    background-color: red;
+  min-height: 645px;
+  max-height: 645px;
+  background-color: #F6F6F6;
+  .plays {
+    
   }
 `;
+
 const Theame = styled.h4`
   font-size: 36px;
   text-align: center;
   margin-bottom: 13px;
 `;
 
-const Home = ({ plays }) => {
+const Home = ({ ongoingPlays }) => {
   return (
     <>
       <SearchComponent />
@@ -69,15 +73,13 @@ const Home = ({ plays }) => {
           <hr />
         </div>
         <Section>
-          <div className='indie'>
-            <Theame>
-              INDIE
-            </Theame>
-            <ul>
-              { plays && plays.map(play =>
-                <li key={play.id}>{play.title}</li>) }
-            </ul>
-          </div>
+          <Theame>
+            INDIE
+          </Theame>
+          <ul>
+            { ongoingPlays && ongoingPlays.map(play =>
+              <li key={play.id}><PlayComponent play={play} /></li>) }
+          </ul>
         </Section>
         <Section>
           <Theame>
@@ -102,13 +104,13 @@ const Home = ({ plays }) => {
 
 export async function getServerSideProps() {
   // 임시적 api
-  const res = await axios.get(`http://3.38.8.220/api/search/play`);
-
-  const data = await res.data;
-  const plays = data.data.searched_results.ongoing_plays;
+  const API_KEY = process.env.NEXT_APP_API_KEY;
+  const res = await axios.get(`${API_KEY}/api/search/play`);
+  const data = await res.data.data;
+  const ongoingPlays = data.searched_results.ongoing_plays;
   
   return {
-    props: { plays }
+    props: { ongoingPlays }
   }
 }
 
