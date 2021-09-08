@@ -1,4 +1,4 @@
-import axios from 'axios';
+// import axios from 'axios';
 import { useState } from 'react';
 import styled from 'styled-components';
 
@@ -12,8 +12,6 @@ const MainContainer = styled.div`
   margin: 0 auto;
   .intro {
     margin: 99px auto;
-    max-width: 800px;
-    height: 143px;
     text-align: center;
     p {
       color: #49b0ff;
@@ -48,15 +46,32 @@ const Section = styled.div`
   }
 `;
 
-const Theame = styled.h4`
+const Theame = styled.div`
   font-size: 36px;
+  font-weight: bold;
   text-align: center;
+  margin-top: 71px;
   margin-bottom: 31px;
+  .theame_en, .theame_kr {
+    margin: auto;
+    width: 320px;
+  }
+  .theame_kr {
+    display: none;
+  }
+  .theame_en:hover {
+    transition-delay: 0.3s;
+    display: none;
+  }
+  .theame_en:hover + .theame_kr {
+    display: block;
+  }
 `;
 
 const Home = () => {
   // 더미데이터(API추가시 삭제)
   const [plays, setPlays] = useState([{
+    id: 1,
     poster: 'https://cdn.notefolio.net/img/5a/af/5aaf36082b60a519aac5db918f67fabd809ee35def6cfd2020855da5e6565db0_v1.jpg',
     title: 'title',
     likes: 10,
@@ -65,6 +80,8 @@ const Home = () => {
     end_date: null,
   },
   {
+    id: 2,
+    poster: null,
     title: 'title2',
     likes: 5,
     star_avg: 3.5,
@@ -72,10 +89,20 @@ const Home = () => {
     end_date: '2021.12.31',
   },
   {
+    id: 3,
+    poster: null,
     title: 'title3',
     likes: 0,
     star_avg: 0,
     start_date: '2021.09.01',
+    end_date: null,
+  },{
+    id: 4,
+    poster: null,
+    title: 'title4',
+    likes: 0,
+    star_avg: 0,
+    start_date: '2021.11.31',
     end_date: null,
   }]);
 
@@ -84,7 +111,7 @@ const Home = () => {
       <MainContainer>
       <SearchComponent />
         <div className='intro'>
-          <Theame>다양한 공연을 라온에어와 함께 만나보세요</Theame>
+          <Theame><h4>다양한 공연을 라온에어와 함께 만나보세요</h4></Theame>
           {/* 클릭으로 포커스를 맞출지, 페이지 이동을 할지 미정 */}
           <ul>
             <li>
@@ -104,7 +131,8 @@ const Home = () => {
         </div>
         <Section>
           <Theame>
-            INDIE
+            <p className='theame_en'>INDIE</p>
+            <p className='theame_kr'>소규모 극단</p>
           </Theame>
           <div className='plays'>
             { plays && plays.map(play =>
@@ -113,7 +141,8 @@ const Home = () => {
         </Section>
         <Section>
           <Theame>
-            NEW TEAM&apos;S PLAY
+            <p className='theame_en'>NEW TEAM&apos;S PLAY</p>
+            <p className='theame_kr'>신생 극단의 연극</p>
           </Theame>
           <div className='plays'>
             { plays && plays.map(play =>
@@ -122,7 +151,8 @@ const Home = () => {
         </Section>
         <Section>
           <Theame>
-            RANKING
+            <p className='theame_en'>RANKING</p>
+            <p className='theame_kr'>인기 연극</p>
           </Theame>
           <div className='plays'>
             { plays && plays.map(play =>
@@ -131,7 +161,8 @@ const Home = () => {
         </Section>
         <Section>
           <Theame>
-            PROCEEDING
+            <p className='theame_en'>PROCEEDING</p>
+            <p className='theame_kr'>진행 중인 공연</p>
           </Theame>
           <div className='plays'>
             { plays && plays.map(play =>
