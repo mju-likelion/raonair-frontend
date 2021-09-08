@@ -61,7 +61,7 @@ const PlayDate = styled.p`
 
 const PlayComponent = ({ play }) => {
   const {
-    // poster,
+    poster,
     title,
     likes,
     star_avg: starAvg,
@@ -81,7 +81,7 @@ const PlayComponent = ({ play }) => {
         </JudgeHeart>
       </JudgeBox>
       {/* 포스터 이미지 구현 후 수정 필요 */}
-      <PlayImage src='/svg/poster_default.svg' />
+      <PlayImage src={poster || '/svg/poster_default.svg'} />
       <PlayTitle>{title}</PlayTitle>
       <PlayDate>{`${startDate} ~ ${endDate || '별도 안내'}`}</PlayDate>
     </PlayBox>

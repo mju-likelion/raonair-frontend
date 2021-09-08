@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useState } from 'react';
 import styled from 'styled-components';
 
 import PlayComponent from '../components/PlayComponent';
@@ -53,7 +54,31 @@ const Theame = styled.h4`
   margin-bottom: 31px;
 `;
 
-const Home = ({ ongoingPlays, tobePlays }) => {
+const Home = () => {
+  // 더미데이터(API추가시 삭제)
+  const [plays, setPlays] = useState([{
+    poster: 'https://cdn.notefolio.net/img/5a/af/5aaf36082b60a519aac5db918f67fabd809ee35def6cfd2020855da5e6565db0_v1.jpg',
+    title: 'title',
+    likes: 10,
+    star_avg: 3.5,
+    start_date: '2021.07.01',
+    end_date: null,
+  },
+  {
+    title: 'title2',
+    likes: 5,
+    star_avg: 3.5,
+    start_date: '2021.08.28',
+    end_date: '2021.12.31',
+  },
+  {
+    title: 'title3',
+    likes: 0,
+    star_avg: 0,
+    start_date: '2021.09.01',
+    end_date: null,
+  }]);
+
   return (
     <>
       <MainContainer>
@@ -82,7 +107,7 @@ const Home = ({ ongoingPlays, tobePlays }) => {
             INDIE
           </Theame>
           <div className='plays'>
-            { ongoingPlays && ongoingPlays.map(play =>
+            { plays && plays.map(play =>
               <div key={play.id}><PlayComponent play={play} /></div>) }
           </div>
         </Section>
@@ -91,7 +116,7 @@ const Home = ({ ongoingPlays, tobePlays }) => {
             NEW TEAM&apos;S PLAY
           </Theame>
           <div className='plays'>
-            { tobePlays && tobePlays.map(play =>
+            { plays && plays.map(play =>
               <div key={play.id}><PlayComponent play={play} /></div>) }
           </div>
         </Section>
@@ -99,11 +124,19 @@ const Home = ({ ongoingPlays, tobePlays }) => {
           <Theame>
             RANKING
           </Theame>
+          <div className='plays'>
+            { plays && plays.map(play =>
+              <div key={play.id}><PlayComponent play={play} /></div>) }
+          </div>
         </Section>
         <Section>
           <Theame>
             PROCEEDING
           </Theame>
+          <div className='plays'>
+            { plays && plays.map(play =>
+              <div key={play.id}><PlayComponent play={play} /></div>) }
+          </div>
         </Section>
       </MainContainer>
     </>
@@ -111,17 +144,17 @@ const Home = ({ ongoingPlays, tobePlays }) => {
 };
 
 
-export async function getServerSideProps() {
-  // 임시 api, 추천 관련 api 구현 필요함
-  const API_KEY = process.env.NEXT_APP_API_KEY;
-  const res = await axios.get(`${API_KEY}/api/search/play`);
-  const data = await res.data.data;
-  const ongoingPlays = data.searched_results.ongoing_plays;
-  const tobePlays = data.searched_results.tobe_plays;
+// export async function getServerSideProps() {
+//   // 임시 api, 추천 관련 api 구현 필요함
+//   const API_KEY = process.env.NEXT_APP_API_KEY;
+//   const res = await axios.get(`${API_KEY}/api/search/play`);
+//   const data = await res.data.data;
+//   const ongoingPlays = data.searched_results.ongoing_plays;
+//   const tobePlays = data.searched_results.tobe_plays;
   
-  return {
-    props: { ongoingPlays, tobePlays }
-  }
-}
+//   return {
+//     props: { ongoingPlays, tobePlays }
+//   }
+// }
 
 export default Home;
