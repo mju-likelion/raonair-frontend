@@ -1,6 +1,6 @@
 // import axios from 'axios';
 import { useState } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 import PlayComponent from '../components/PlayComponent';
 import SearchComponent from '../components/SearchComponent';
