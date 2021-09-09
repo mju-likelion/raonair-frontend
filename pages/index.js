@@ -1,6 +1,6 @@
 // import axios from 'axios';
 import { useState } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import PlayComponent from '../components/PlayComponent';
 import SearchComponent from '../components/SearchComponent';
@@ -35,7 +35,9 @@ const MainContainer = styled.div`
 const Section = styled.div`
   min-height: 645px;
   max-height: 645px;
-  background-color: #F6F6F6;
+  &:nth-child(odd) {
+    background-color: #F6F6F6;
+  }
   .plays {
     display: flex;
     align-items: center;
@@ -46,26 +48,12 @@ const Section = styled.div`
   }
 `;
 
-const Theame = styled.div`
+const Theame = styled.h4`
   font-size: 36px;
   font-weight: bold;
   text-align: center;
   margin-top: 71px;
   margin-bottom: 31px;
-  .theame_en, .theame_kr {
-    margin: auto;
-    width: 320px;
-  }
-  .theame_kr {
-    display: none;
-  }
-  .theame_en:hover {
-    transition-delay: 0.3s;
-    display: none;
-  }
-  .theame_en:hover + .theame_kr {
-    display: block;
-  }
 `;
 
 const Home = () => {
@@ -111,7 +99,7 @@ const Home = () => {
       <MainContainer>
       <SearchComponent />
         <div className='intro'>
-          <Theame><h4>다양한 공연을 라온에어와 함께 만나보세요</h4></Theame>
+          <Theame>다양한 공연을 라온에어와 함께 만나보세요</Theame>
           {/* 클릭으로 포커스를 맞출지, 페이지 이동을 할지 미정 */}
           <ul>
             <li>
@@ -130,40 +118,28 @@ const Home = () => {
           <hr />
         </div>
         <Section>
-          <Theame>
-            <p className='theame_en'>INDIE</p>
-            <p className='theame_kr'>소규모 극단</p>
-          </Theame>
+          <Theame>INDIE</Theame>
           <div className='plays'>
             { plays && plays.map(play =>
               <div key={play.id}><PlayComponent play={play} /></div>) }
           </div>
         </Section>
         <Section>
-          <Theame>
-            <p className='theame_en'>NEW TEAM&apos;S PLAY</p>
-            <p className='theame_kr'>신생 극단의 연극</p>
-          </Theame>
+          <Theame>NEW TEAM&apos;S PLAY</Theame>
           <div className='plays'>
             { plays && plays.map(play =>
               <div key={play.id}><PlayComponent play={play} /></div>) }
           </div>
         </Section>
         <Section>
-          <Theame>
-            <p className='theame_en'>RANKING</p>
-            <p className='theame_kr'>인기 연극</p>
-          </Theame>
+          <Theame>RANKING</Theame>
           <div className='plays'>
             { plays && plays.map(play =>
               <div key={play.id}><PlayComponent play={play} /></div>) }
           </div>
         </Section>
         <Section>
-          <Theame>
-            <p className='theame_en'>PROCEEDING</p>
-            <p className='theame_kr'>진행 중인 공연</p>
-          </Theame>
+          <Theame>PROCEEDING</Theame>
           <div className='plays'>
             { plays && plays.map(play =>
               <div key={play.id}><PlayComponent play={play} /></div>) }
