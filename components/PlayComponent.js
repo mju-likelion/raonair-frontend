@@ -1,6 +1,15 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 
+
 const PlayBox = styled.div`
+  @keyframes spin {
+    from {
+      width: 63px;
+    } to{
+      width: 150px;
+    }
+  }
   height: 400px;
   width: 220px;
   margin-top: 32px;
@@ -12,6 +21,44 @@ const PlayBox = styled.div`
   box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
   border-radius: 6px;
   cursor: pointer;
+  position: relative;
+  .Dday {
+    background-color: #000000B3;
+    height: 270px;
+    width: 192px;
+    border-radius: 6px;
+    margin: 0 auto;
+    position: absolute;
+    top: 45px;
+    left: 14px;
+    opacity: 0;
+    transition: 1s;
+  }
+  .DdayInner {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    margin: 29% auto;
+    border-top: solid 5px #529ACC;
+    border-bottom: solid 5px #529ACC;
+    width: 150px;
+    height: 150px;
+    transition: 1s;
+    p {
+      /* color: #49B0FF; */
+      color: #ffffff;
+      font-size: 36px;
+      font-weight: bolder;
+    }
+  }
+  &:hover > .Dday {
+    opacity: 100%;
+  }
+  &:hover .DdayInner {
+    animation-name: spin;
+    animation-duration: 1.3s;
+  }
 `;
 
 const JudgeBox = styled.div`
@@ -39,7 +86,7 @@ const JudgeImg = styled.img`
 `;
 
 const PlayImage = styled.img`
-  margin: 0 auto;
+  margin: 0 auto 11px auto;
   height: 279px;
   width: 192px;
   border-radius: 6px;
@@ -54,7 +101,7 @@ const PlayTitle = styled.h4`
 const PlayDate = styled.p`
   text-align: center;
   color: #22222280;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: lighter;
   margin: 0;
 `;
@@ -68,6 +115,9 @@ const PlayComponent = ({ play }) => {
     start_date: startDate,
     end_date: endDate,
   } = play;
+
+  const [ready, setReady] = useState(3);
+
   return (
     <PlayBox>
       <JudgeBox>
@@ -84,6 +134,11 @@ const PlayComponent = ({ play }) => {
       <PlayImage src={poster || '/svg/poster_default.svg'} />
       <PlayTitle>{title}</PlayTitle>
       <PlayDate>{`${startDate} ~ ${endDate || '별도 안내'}`}</PlayDate>
+      <div className='Dday'>
+        <div className='DdayInner'>
+          <p>D-{ready}</p>
+        </div>
+      </div>
     </PlayBox>
   );
 };
