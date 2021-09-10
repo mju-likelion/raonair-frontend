@@ -64,7 +64,7 @@ const Home = () => {
     title: 'title',
     likes: 10,
     star_avg: 3.5,
-    start_date: '2021.07.01',
+    start_date: new Date('2021-07-01').toLocaleDateString(),
     end_date: null,
   },
   {
@@ -73,8 +73,8 @@ const Home = () => {
     title: 'title2',
     likes: 5,
     star_avg: 3.5,
-    start_date: '2021.08.28',
-    end_date: '2021.12.31',
+    start_date: new Date('2021-08-28').toLocaleDateString(),
+    end_date: new Date('2021.12.31').toLocaleDateString(),
   },
   {
     id: 3,
@@ -82,7 +82,7 @@ const Home = () => {
     title: 'title3',
     likes: 0,
     star_avg: 0,
-    start_date: '2021.09.01',
+    start_date: new Date('2021.09.01').toLocaleDateString(),
     end_date: null,
   },{
     id: 4,
@@ -90,7 +90,7 @@ const Home = () => {
     title: 'title4',
     likes: 0,
     star_avg: 0,
-    start_date: '2021.11.31',
+    start_date: new Date('2021.11.31').toLocaleDateString(),
     end_date: null,
   }]);
 
