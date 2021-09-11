@@ -2,13 +2,13 @@ import { RecoilRoot } from 'recoil';
 
 import '../styles/globals.css'
 
-import SetGlobalStyles from '../components/GlobalStyles';
+import GlobalStyles from '../components/GlobalStyles';
 import Header from '../components/Header';
 
 function MyApp({ Component, pageProps }) {
   return (
     <RecoilRoot>
-      <SetGlobalStyles/>
+      <GlobalStyles/>
       <Header/>
       <Component {...pageProps} />
     </RecoilRoot>
