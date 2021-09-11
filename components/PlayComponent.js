@@ -3,13 +3,6 @@ import styled from 'styled-components';
 
 
 const PlayBox = styled.div`
-  @keyframes spin {
-    from {
-      width: 63px;
-    } to{
-      width: 150px;
-    }
-  }
   height: 400px;
   width: 220px;
   margin-top: 32px;
@@ -22,42 +15,51 @@ const PlayBox = styled.div`
   border-radius: 6px;
   cursor: pointer;
   position: relative;
-  .Dday {
-    background-color: #000000B3;
-    height: 270px;
-    width: 192px;
-    border-radius: 6px;
-    margin: 0 auto;
-    position: absolute;
-    top: 45px;
-    left: 14px;
-    opacity: 0;
-    transition: 1s;
-  }
-  .DdayInner {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
-    margin: 29% auto;
-    border-top: solid 5px #529ACC;
-    border-bottom: solid 5px #529ACC;
-    width: 150px;
-    height: 150px;
-    transition: 1s;
-    p {
-      /* color: #49B0FF; */
-      color: #ffffff;
-      font-size: 36px;
-      font-weight: bolder;
+`;
+
+const DdayInner = styled.div`
+  @keyframes spred {
+    from {
+      width: 63px;
+    } to{
+      width: 150px;
     }
   }
-  &:hover > .Dday {
-    opacity: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  margin: 29% auto;
+  border-top: solid 5px #529ACC;
+  border-bottom: solid 5px #529ACC;
+  width: 150px;
+  height: 150px;
+  transition: 1s;
+  p {
+    /* color: #49B0FF; */
+    color: #ffffff;
+    font-size: 36px;
+    font-weight: bolder;
   }
-  &:hover .DdayInner {
-    animation-name: spin;
+  ${PlayBox}:hover &{
+    animation-name: spred;
     animation-duration: 1.3s;
+  }
+`;
+
+const Dday = styled.div`
+  background-color: #000000B3;
+  height: 270px;
+  width: 192px;
+  border-radius: 6px;
+  margin: 0 auto;
+  position: absolute;
+  top: 45px;
+  left: 14px;
+  opacity: 0;
+  transition: 1s;
+  ${PlayBox}:hover &{
+    opacity: 1;
   }
 `;
 
@@ -134,11 +136,11 @@ const PlayComponent = ({ play }) => {
       <PlayImage src={poster || '/svg/poster_default.svg'} />
       <PlayTitle>{title}</PlayTitle>
       <PlayDate>{`${startDate} ~ ${endDate || '별도 안내'}`}</PlayDate>
-      <div className='Dday'>
-        <div className='DdayInner'>
+      <Dday>
+        <DdayInner>
           <p>D-{ready}</p>
-        </div>
-      </div>
+        </DdayInner>
+      </Dday>
     </PlayBox>
   );
 };
