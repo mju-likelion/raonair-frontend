@@ -1,4 +1,5 @@
 // import axios from 'axios';
+import Link from 'next/link';
 import styled from 'styled-components';
 
 import PlayComponent from '../components/PlayComponent';
@@ -129,9 +130,9 @@ const Home = ({ plays }) => {
           <Plays>
             {plays &&
               plays.map((play) => (
-                <div key={play.id}>
-                  <PlayComponent play={play} />
-                </div>
+                <Link href={`/plays/${play.id}`} key={play.id}>
+                  <a><PlayComponent play={play} /></a>
+                </Link>
               ))}
           </Plays>
         </Section>
@@ -141,9 +142,9 @@ const Home = ({ plays }) => {
           <Plays>
             {plays &&
               plays.map((play) => (
-                <div key={play.id}>
-                  <PlayComponent play={play} />
-                </div>
+                <Link href={`/plays/${play.id}`} key={play.id}>
+                  <a><PlayComponent play={play} /></a>
+                </Link>
               ))}
           </Plays>
         </Section>
@@ -152,9 +153,9 @@ const Home = ({ plays }) => {
           <Plays>
             {plays &&
               plays.map((play) => (
-                <div key={play.id}>
-                  <PlayComponent play={play} />
-                </div>
+                <Link href={`/plays/${play.id}`} key={play.id}>
+                  <a><PlayComponent play={play} /></a>
+                </Link>
               ))}
           </Plays>
         </Section>
@@ -163,9 +164,9 @@ const Home = ({ plays }) => {
           <Plays>
             {plays &&
               plays.map((play) => (
-                <div key={play.id}>
-                  <PlayComponent play={play} />
-                </div>
+                <Link href={`/plays/${play.id}`} key={play.id}>
+                  <a><PlayComponent play={play} /></a>
+                </Link>
               ))}
           </Plays>
         </Section>
