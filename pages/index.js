@@ -62,7 +62,6 @@ const Theme = styled.h4`
 `;
 
 const Home = ({ plays }) => {
-
   const ScrollEvent = (e) => {
     if(e.target.id === 'indie') {
       window.scrollTo(0, 1000);
@@ -130,6 +129,16 @@ const Home = ({ plays }) => {
           <Plays>
             {plays &&
               plays.map((play) => (
+                // <Link
+                //   href={{
+                //     pathname: '/plays/[id]',
+                //     query: { play: JSON.stringify(play)},
+                //   }}
+                //   as={`/plays/${play.id}`}
+                //   key={play.id}
+                // >
+                //   <a><PlayComponent play={play} /></a>
+                // </Link>
                 <Link href={`/plays/${play.id}`} key={play.id}>
                   <a><PlayComponent play={play} /></a>
                 </Link>
