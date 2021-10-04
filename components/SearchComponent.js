@@ -207,11 +207,6 @@ const SearchComponent = () => {
             <SearchTarget>극단</SearchTarget>
           </HighlightBoxTroupe>
         </SearchTargetBox>
-        {/* {redirect && (
-          <Redirect
-            to={`/search?query=${searchCondition.searchTerm}&${optionQuery}`}
-          />
-        )} */}
         <OptionBox>
           {selectedTarget === 'play' ? (
             <SearchOption>
