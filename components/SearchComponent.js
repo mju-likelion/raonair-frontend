@@ -128,15 +128,21 @@ const SubmitButton = styled.button`
   width: 42px;
   height: 110px;
   border-radius: 0 36px 36px 0;
-  background-color: #FF2835;
+  background-color: #ff2835;
   border: none;
   margin-right: -28px;
+  padding: 43px 0;
 `;
 
 const SearchComponent = () => {
   const [selectedTarget, setSelectedTarget] = useState('play');
   const [searchTarget, setSearchTarget] = useRecoilState(searchTargetState);
-
+  const locations = [ // api는 페이지에서만 가능함 고민 필요
+    'seoul', 'busan', 'deagu', 'incheon', 'gwangju',
+    'deajeon', 'ulsan', 'sejong', 'gyeonggi', 'gangwon',
+    'chungbuk', 'chungnam', 'jeonbuk', 'jeonnam', 'gyeongbuk',
+    'gyeongnam', 'jeju'
+  ];
   const handleClick = useCallback(
     ({
       nativeEvent: {
@@ -199,7 +205,12 @@ const SearchComponent = () => {
               <OptionTitle>지역</OptionTitle>
               <OptionSelect name="select" {...formik.getFieldProps('select')}>
                 <option value="">지역을 선택해 주세요</option>
-                <option value="seoul" key="서울">
+                {locations.map((loc) => (
+                  <option value={loc} key={loc}>
+                    {loc}
+                  </option>
+                ))}
+                {/* <option value="seoul" key="서울">
                   서울
                 </option>
                 <option value="gyeonggi" key="경기">
@@ -210,11 +221,11 @@ const SearchComponent = () => {
                 </option>
                 <option value="deajeon" key="대전">
                   대전
-                </option>
+                </option> */}
               </OptionSelect>
             </SearchOption>
             <SubmitButton type="submit">
-              <img src='../svg/search_button.svg' alt='검색'/>
+              <img src="../svg/search_button.svg" alt="검색" />
             </SubmitButton>
           </OptionBox>
         ) : (
@@ -239,7 +250,7 @@ const SearchComponent = () => {
               </OptionSelect>
             </SearchOption>
             <SubmitButton type="submit">
-              <img src='../svg/search_button.svg' alt='검색'/>
+              <img src="../svg/search_button.svg" alt="검색" />
             </SubmitButton>
           </OptionBox>
         )}
@@ -247,5 +258,11 @@ const SearchComponent = () => {
     </>
   );
 };
+
+// export async function getStaticProps() {
+//   return{
+//     props: {locations},
+//   };
+// }
 
 export default SearchComponent;
