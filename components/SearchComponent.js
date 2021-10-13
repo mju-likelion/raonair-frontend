@@ -125,36 +125,42 @@ const VerticalLine = styled.div`
 `;
 
 const SubmitButton = styled.button`
-  width: 42px;
+  width: 52px;
   height: 110px;
   border-radius: 0 36px 36px 0;
-  background-color: #ff2835;
+  background-color: #49b0ff;
   border: none;
   margin-right: -28px;
   padding: 43px 0;
+  cursor: pointer;
+  &:hover {
+    background-color: #529acc;
+  }
 `;
 
 const SearchComponent = () => {
   const [selectedTarget, setSelectedTarget] = useState('play');
   const [searchTarget, setSearchTarget] = useRecoilState(searchTargetState);
-  const locations = [ // api는 페이지에서만 가능함 고민 필요
-    'seoul', 'busan', 'deagu', 'incheon', 'gwangju',
-    'deajeon', 'ulsan', 'sejong', 'gyeonggi', 'gangwon',
-    'chungbuk', 'chungnam', 'jeonbuk', 'jeonnam', 'gyeongbuk',
-    'gyeongnam', 'jeju'
+  const locations = [
+    // api는 페이지에서만 가능함 고민 필요
+    'seoul',
+    'busan',
+    'deagu',
+    'incheon',
+    'gwangju',
+    'deajeon',
+    'ulsan',
+    'sejong',
+    'gyeonggi',
+    'gangwon',
+    'chungbuk',
+    'chungnam',
+    'jeonbuk',
+    'jeonnam',
+    'gyeongbuk',
+    'gyeongnam',
+    'jeju',
   ];
-  const handleClick = useCallback(
-    ({
-      nativeEvent: {
-        target: { innerText },
-      },
-    }) => {
-      const target = innerText === '연극' ? 'play' : 'troupe';
-      setSearchTarget({ ...searchTarget, target });
-      setSelectedTarget(target);
-    },
-    [searchTarget, setSearchTarget],
-  );
 
   const formik = useFormik({
     initialValues: {
@@ -173,13 +179,26 @@ const SearchComponent = () => {
     },
   });
 
+  const handleClick = useCallback(
+    ({
+      nativeEvent: {
+        target: { innerText },
+      },
+    }) => {
+      const target = innerText === '연극' ? 'play' : 'troupe';
+      setSearchTarget({ ...searchTarget, target });
+      setSelectedTarget(target);
+      formik.resetForm();
+    },
+    [searchTarget, setSearchTarget],
+  );
+
   return (
     <>
       <Background>
         <HeadLine>
           라온에어에 오신걸 환영합니다. 원하시는 연극 또는 극단을 검색해 주세요.
         </HeadLine>
-        {/* 검색 타겟을 바꾸면 폼을 초기화하는 코드 추가 필요 */}
         <SearchTargetBox>
           <HighlightBoxPlay highlight={selectedTarget} onClick={handleClick}>
             <SearchTarget>연극</SearchTarget>
@@ -210,18 +229,6 @@ const SearchComponent = () => {
                     {loc}
                   </option>
                 ))}
-                {/* <option value="seoul" key="서울">
-                  서울
-                </option>
-                <option value="gyeonggi" key="경기">
-                  경기
-                </option>
-                <option value="busan" key="부산">
-                  부산
-                </option>
-                <option value="deajeon" key="대전">
-                  대전
-                </option> */}
               </OptionSelect>
             </SearchOption>
             <SubmitButton type="submit">
@@ -258,11 +265,5 @@ const SearchComponent = () => {
     </>
   );
 };
-
-// export async function getStaticProps() {
-//   return{
-//     props: {locations},
-//   };
-// }
 
 export default SearchComponent;
