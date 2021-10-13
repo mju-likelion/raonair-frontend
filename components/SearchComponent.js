@@ -143,23 +143,23 @@ const SearchComponent = () => {
   const [searchTarget, setSearchTarget] = useRecoilState(searchTargetState);
   const locations = [
     // api는 페이지에서만 가능함 고민 필요
-    'seoul',
-    'busan',
-    'deagu',
-    'incheon',
-    'gwangju',
-    'deajeon',
-    'ulsan',
-    'sejong',
-    'gyeonggi',
-    'gangwon',
-    'chungbuk',
-    'chungnam',
-    'jeonbuk',
-    'jeonnam',
-    'gyeongbuk',
-    'gyeongnam',
-    'jeju',
+    { id: '서울', value: 'seoul' },
+    { id: '경기', value: 'gyeonggi' },
+    { id: '인천', value: 'incheon' },
+    { id: '부산', value: 'busan' },
+    { id: '광주', value: 'gwangju' },
+    { id: '대구', value: 'deagu' },
+    { id: '대전', value: 'deajeon' },
+    { id: '울산', value: 'ulsan' },
+    { id: '세종', value: 'sejong' },
+    { id: '강원', value: 'gangwon' },
+    { id: '충북', value: 'chungbuk' },
+    { id: '충남', value: 'chungnam' },
+    { id: '전북', value: 'jeonbuk' },
+    { id: '전남', value: 'jeonnam' },
+    { id: '경북', value: 'gyeongbuk' },
+    { id: '경남', value: 'gyeongnam' },
+    { id: '제주', value: 'jeju' },
   ];
 
   const formik = useFormik({
@@ -212,27 +212,27 @@ const SearchComponent = () => {
             <SearchOption>
               <OptionTitle>제목</OptionTitle>
               <OptionInput
-                id="searchTerm"
-                type="text"
-                name="searchTerm"
-                placeholder="어떤 제목인가요?"
+                id='searchTerm'
+                type='text'
+                name='searchTerm'
+                placeholder='어떤 제목인가요?'
                 {...formik.getFieldProps('searchTerm')}
               />
             </SearchOption>
             <VerticalLine />
             <SearchOption>
               <OptionTitle>지역</OptionTitle>
-              <OptionSelect name="select" {...formik.getFieldProps('select')}>
-                <option value="">지역을 선택해 주세요</option>
+              <OptionSelect name='select' {...formik.getFieldProps('select')}>
+                <option value=''>지역을 선택해 주세요</option>
                 {locations.map((loc) => (
-                  <option value={loc} key={loc}>
-                    {loc}
+                  <option value={loc.value} key={loc.id}>
+                    {loc.id}
                   </option>
                 ))}
               </OptionSelect>
             </SearchOption>
-            <SubmitButton type="submit">
-              <img src="../svg/search_button.svg" alt="검색" />
+            <SubmitButton type='submit'>
+              <img src='../svg/search_button.svg' alt='검색' />
             </SubmitButton>
           </OptionBox>
         ) : (
@@ -240,24 +240,24 @@ const SearchComponent = () => {
             <SearchOption>
               <OptionTitle>이름</OptionTitle>
               <OptionInput
-                id="searchTerm"
-                type="text"
-                name="searchTerm"
-                placeholder="어떤 극단인가요?"
+                id='searchTerm'
+                type='text'
+                name='searchTerm'
+                placeholder='어떤 극단인가요?'
                 {...formik.getFieldProps('searchTerm')}
               />
             </SearchOption>
             <VerticalLine />
             <SearchOption>
               <OptionTitle>타입</OptionTitle>
-              <OptionSelect name="select" {...formik.getFieldProps('select')}>
-                <option value="">극단 타입을 선택해 주세요</option>
-                <option value="normal">일반 극단</option>
-                <option value="student">학생 극단</option>
+              <OptionSelect name='select' {...formik.getFieldProps('select')}>
+                <option value=''>극단 타입을 선택해 주세요</option>
+                <option value='normal'>일반 극단</option>
+                <option value='student'>학생 극단</option>
               </OptionSelect>
             </SearchOption>
-            <SubmitButton type="submit">
-              <img src="../svg/search_button.svg" alt="검색" />
+            <SubmitButton type='submit'>
+              <img src='../svg/search_button.svg' alt='검색' />
             </SubmitButton>
           </OptionBox>
         )}

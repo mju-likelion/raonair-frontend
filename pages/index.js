@@ -62,13 +62,12 @@ const Theme = styled.h4`
 `;
 
 const Home = ({ plays }) => {
-
   const ScrollEvent = (e) => {
-    if(e.target.id === 'indie') {
+    if (e.target.id === 'indie') {
       window.scrollTo(0, 1000);
-    } else if(e.target.id === 'newTeam') {
+    } else if (e.target.id === 'newTeam') {
       window.scrollTo(0, 1700);
-    } else if(e.target.id === 'rank') {
+    } else if (e.target.id === 'rank') {
       window.scrollTo(0, 2400);
     } else {
       window.scrollTo(0, 3000);
@@ -84,8 +83,8 @@ const Home = ({ plays }) => {
           <ul>
             <li>
               <button
-                type="button"
-                id="indie"
+                type='button'
+                id='indie'
                 onClick={ScrollEvent}
                 onKeyUp={ScrollEvent}
               >
@@ -94,8 +93,8 @@ const Home = ({ plays }) => {
             </li>
             <li>
               <button
-                type="button"
-                id="newTeam"
+                type='button'
+                id='newTeam'
                 onClick={ScrollEvent}
                 onKeyUp={ScrollEvent}
               >
@@ -104,8 +103,8 @@ const Home = ({ plays }) => {
             </li>
             <li>
               <button
-                type="button"
-                id="rank"
+                type='button'
+                id='rank'
                 onClick={ScrollEvent}
                 onKeyUp={ScrollEvent}
               >
@@ -114,8 +113,8 @@ const Home = ({ plays }) => {
             </li>
             <li>
               <button
-                type="button"
-                id="proceed"
+                type='button'
+                id='proceed'
                 onClick={ScrollEvent}
                 onKeyUp={ScrollEvent}
               >
@@ -131,7 +130,9 @@ const Home = ({ plays }) => {
             {plays &&
               plays.map((play) => (
                 <Link href={`/plays/${play.id}`} key={play.id}>
-                  <a><PlayComponent play={play} /></a>
+                  <a>
+                    <PlayComponent play={play} />
+                  </a>
                 </Link>
               ))}
           </Plays>
@@ -143,7 +144,9 @@ const Home = ({ plays }) => {
             {plays &&
               plays.map((play) => (
                 <Link href={`/plays/${play.id}`} key={play.id}>
-                  <a><PlayComponent play={play} /></a>
+                  <a>
+                    <PlayComponent play={play} />
+                  </a>
                 </Link>
               ))}
           </Plays>
@@ -154,7 +157,9 @@ const Home = ({ plays }) => {
             {plays &&
               plays.map((play) => (
                 <Link href={`/plays/${play.id}`} key={play.id}>
-                  <a><PlayComponent play={play} /></a>
+                  <a>
+                    <PlayComponent play={play} />
+                  </a>
                 </Link>
               ))}
           </Plays>
@@ -165,7 +170,9 @@ const Home = ({ plays }) => {
             {plays &&
               plays.map((play) => (
                 <Link href={`/plays/${play.id}`} key={play.id}>
-                  <a><PlayComponent play={play} /></a>
+                  <a>
+                    <PlayComponent play={play} />
+                  </a>
                 </Link>
               ))}
           </Plays>
