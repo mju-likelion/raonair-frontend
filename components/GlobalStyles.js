@@ -18,6 +18,13 @@ const GlobalStyle = createGlobalStyle`
   a {
     text-decoration: none;
   }
+  p {
+    margin: 0;
+  }
+  td {
+    width: 0;
+    height: 0;
+  }
 `;
 
 export default GlobalStyle;
