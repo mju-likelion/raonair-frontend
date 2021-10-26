@@ -129,16 +129,6 @@ const Home = ({ plays }) => {
           <Plays>
             {plays &&
               plays.map((play) => (
-                // <Link
-                //   href={{
-                //     pathname: '/plays/[id]',
-                //     query: { play: JSON.stringify(play)},
-                //   }}
-                //   as={`/plays/${play.id}`}
-                //   key={play.id}
-                // >
-                //   <a><PlayComponent play={play} /></a>
-                // </Link>
                 <Link href={`/plays/${play.id}`} key={play.id}>
                   <a>
                     <PlayComponent play={play} />
@@ -148,7 +138,6 @@ const Home = ({ plays }) => {
           </Plays>
         </Section>
         <Section>
-          {/* <Theme>NEW TEAM&apos;S PLAY</Theme> */}
           <Theme>NEW TEAM'S PLAY</Theme>
           <Plays>
             {plays &&
