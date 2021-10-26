@@ -1,7 +1,9 @@
 import axios from 'axios';
-import { useState, useEffect, useCallback } from 'react';
+import { useFormik } from 'formik';
+import { useState, useCallback } from 'react';
 import { useRecoilState } from 'recoil';
 import styled, { css } from 'styled-components';
+import * as Yup from 'yup';
 
 import { searchTargetState } from '../globalState/search';
 
@@ -77,7 +79,11 @@ const HighlightBoxTroupe = styled(HighlightBox)`
     `};
 `;
 
-const OptionBox = styled.div`
+const SearchOption = styled.div`
+  width: 378px;
+`;
+
+const OptionBox = styled.form`
   width: 900px;
   height: 110px;
   margin-top: 48px;
@@ -86,15 +92,11 @@ const OptionBox = styled.div`
   border-radius: 36px;
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
 `;
 
-const SearchOption = styled.div`
-  width: 378px;
-  height: 58px;
-`;
-
-const OptionTitle = styled.h4`
-  margin-top: 27px;
+const OptionTitle = styled.p`
+  /* margin-top: 27px; */
   margin-bottom: 14px;
   font-weight: normal;
 `;
@@ -122,36 +124,60 @@ const VerticalLine = styled.div`
   background-color: lightgray;
 `;
 
+const SubmitButton = styled.button`
+  width: 52px;
+  height: 110px;
+  border-radius: 0 36px 36px 0;
+  background-color: #49b0ff;
+  border: none;
+  margin-right: -28px;
+  padding: 43px 0;
+  cursor: pointer;
+  &:hover {
+    background-color: #529acc;
+  }
+`;
+
 const SearchComponent = () => {
   const [selectedTarget, setSelectedTarget] = useState('play');
-  const [searchOptions, setSearchOptions] = useState([]);
-  const [redirect, setRedirect] = useState(false);
   const [searchTarget, setSearchTarget] = useRecoilState(searchTargetState);
-  const [searchCondition, setSearchCondition] = useState({
-    searchTerm: '',
-    location: '',
-    type: '',
-  });
-  const [optionQuery, setOptionQuery] = useState('');
+  const locations = [
+    // api는 페이지에서만 가능함 고민 필요
+    { id: '서울', value: 'seoul' },
+    { id: '경기', value: 'gyeonggi' },
+    { id: '인천', value: 'incheon' },
+    { id: '부산', value: 'busan' },
+    { id: '광주', value: 'gwangju' },
+    { id: '대구', value: 'deagu' },
+    { id: '대전', value: 'deajeon' },
+    { id: '울산', value: 'ulsan' },
+    { id: '세종', value: 'sejong' },
+    { id: '강원', value: 'gangwon' },
+    { id: '충북', value: 'chungbuk' },
+    { id: '충남', value: 'chungnam' },
+    { id: '전북', value: 'jeonbuk' },
+    { id: '전남', value: 'jeonnam' },
+    { id: '경북', value: 'gyeongbuk' },
+    { id: '경남', value: 'gyeongnam' },
+    { id: '제주', value: 'jeju' },
+  ];
 
-  useEffect(() => {
-    const getSearchOptions = async () => {
-      try {
-        const {
-          data: {
-            data: { play_options: playOptions },
-          },
-        } = await axios({
-          method: 'GET',
-          url: `http://3.38.8.220/api/search/play-options`,
-        });
-        return setSearchOptions(playOptions);
-      } catch (err) {
-        return err;
-      }
-    };
-    getSearchOptions();
-  }, []);
+  const formik = useFormik({
+    initialValues: {
+      searchTerm: '',
+      select: '',
+    },
+    validationSchema: Yup.object({
+      // 유효성 검증 할 필요가 있는지 고민 필요
+      // searchTerm: Yup.string().required('searchTerm'),
+      // select: Yup.required('select'),
+    }),
+    onSubmit: (values) => {
+      // submit 동작 구현해야함
+      // eslint-disable-next-line no-alert
+      alert(JSON.stringify(values, null, 2));
+    },
+  });
 
   const handleClick = useCallback(
     ({
@@ -162,40 +188,14 @@ const SearchComponent = () => {
       const target = innerText === '연극' ? 'play' : 'troupe';
       setSearchTarget({ ...searchTarget, target });
       setSelectedTarget(target);
+      formik.resetForm();
     },
     [searchTarget, setSearchTarget],
   );
 
-  const handleChange = useCallback(
-    ({ target: { value, name } }) => {
-      if (name === 'location') {
-        setSearchCondition({ ...searchCondition, type: '', [name]: value });
-      } else if (name === 'type') {
-        setSearchCondition({ ...searchCondition, location: '', [name]: value });
-      } else {
-        setSearchCondition({ ...searchCondition, [name]: value });
-      }
-    },
-    [searchCondition],
-  );
-
-  const handleKeyPress = ({ key }) => {
-    if (key === 'Enter') {
-      const a = searchCondition.location
-        ? `location=${searchCondition.location}`
-        : `type=${searchCondition.type}`;
-      setOptionQuery(a);
-      setRedirect(true);
-    }
-  };
-
-  const handleFocus = e => {
-    e.target.value = '';
-  };
-
   return (
     <>
-      <Background onKeyPress={handleKeyPress}>
+      <Background>
         <HeadLine>
           라온에어에 오신걸 환영합니다. 원하시는 연극 또는 극단을 검색해 주세요.
         </HeadLine>
@@ -207,59 +207,60 @@ const SearchComponent = () => {
             <SearchTarget>극단</SearchTarget>
           </HighlightBoxTroupe>
         </SearchTargetBox>
-        {/* {redirect && (
-          <Redirect
-            to={`/search?query=${searchCondition.searchTerm}&${optionQuery}`}
-          />
-        )} */}
-        <OptionBox>
-          {selectedTarget === 'play' ? (
+        {selectedTarget === 'play' ? (
+          <OptionBox onSubmit={formik.handleSubmit}>
             <SearchOption>
               <OptionTitle>제목</OptionTitle>
               <OptionInput
+                id='searchTerm'
                 type='text'
                 name='searchTerm'
                 placeholder='어떤 제목인가요?'
-                onChange={handleChange}
-                onFocus={handleFocus}
+                {...formik.getFieldProps('searchTerm')}
               />
             </SearchOption>
-          ) : (
+            <VerticalLine />
             <SearchOption>
-              <OptionTitle>이름</OptionTitle>
-              <OptionInput
-                type='text'
-                name='searchTerm'
-                placeholder='극단 이름을 입력해 주세요'
-                onChange={handleChange}
-                onFocus={handleFocus}
-              />
-            </SearchOption>
-          )}
-          <VerticalLine />
-          {selectedTarget === 'play' ? (
-            <SearchOption onChange={handleChange}>
               <OptionTitle>지역</OptionTitle>
-              <OptionSelect name='location'>
+              <OptionSelect name='select' {...formik.getFieldProps('select')}>
                 <option value=''>지역을 선택해 주세요</option>
-                {searchOptions.map(({ key, value }) => (
-                  <option value={key} key={key}>
-                    {value}
+                {locations.map((loc) => (
+                  <option value={loc.value} key={loc.id}>
+                    {loc.id}
                   </option>
                 ))}
               </OptionSelect>
             </SearchOption>
-          ) : (
-            <SearchOption onChange={handleChange}>
+            <SubmitButton type='submit'>
+              <img src='../svg/search_button.svg' alt='검색' />
+            </SubmitButton>
+          </OptionBox>
+        ) : (
+          <OptionBox onSubmit={formik.handleSubmit}>
+            <SearchOption>
+              <OptionTitle>이름</OptionTitle>
+              <OptionInput
+                id='searchTerm'
+                type='text'
+                name='searchTerm'
+                placeholder='어떤 극단인가요?'
+                {...formik.getFieldProps('searchTerm')}
+              />
+            </SearchOption>
+            <VerticalLine />
+            <SearchOption>
               <OptionTitle>타입</OptionTitle>
-              <OptionSelect name='type'>
+              <OptionSelect name='select' {...formik.getFieldProps('select')}>
                 <option value=''>극단 타입을 선택해 주세요</option>
                 <option value='normal'>일반 극단</option>
                 <option value='student'>학생 극단</option>
               </OptionSelect>
             </SearchOption>
-          )}
-        </OptionBox>
+            <SubmitButton type='submit'>
+              <img src='../svg/search_button.svg' alt='검색' />
+            </SubmitButton>
+          </OptionBox>
+        )}
       </Background>
     </>
   );

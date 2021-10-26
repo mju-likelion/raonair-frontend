@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
-
 const PlayBox = styled.div`
   height: 400px;
   width: 220px;
@@ -21,7 +20,8 @@ const DdayInner = styled.div`
   @keyframes spred {
     from {
       width: 63px;
-    } to{
+    }
+    to {
       width: 150px;
     }
   }
@@ -30,8 +30,8 @@ const DdayInner = styled.div`
   align-content: center;
   align-items: center;
   margin: 29% auto;
-  border-top: solid 5px #529ACC;
-  border-bottom: solid 5px #529ACC;
+  border-top: solid 5px #529acc;
+  border-bottom: solid 5px #529acc;
   width: 150px;
   height: 150px;
   transition: 1s;
@@ -41,14 +41,14 @@ const DdayInner = styled.div`
     font-size: 36px;
     font-weight: bolder;
   }
-  ${PlayBox}:hover &{
+  ${PlayBox}:hover & {
     animation-name: spred;
     animation-duration: 1.3s;
   }
 `;
 
 const Dday = styled.div`
-  background-color: #000000B3;
+  background-color: #000000b3;
   height: 270px;
   width: 192px;
   border-radius: 6px;
@@ -58,7 +58,7 @@ const Dday = styled.div`
   left: 14px;
   opacity: 0;
   transition: 1s;
-  ${PlayBox}:hover &{
+  ${PlayBox}:hover & {
     opacity: 1;
   }
 `;
