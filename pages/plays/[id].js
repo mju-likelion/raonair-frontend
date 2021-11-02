@@ -1,6 +1,10 @@
 import { withRouter } from 'next/router';
 import styled from 'styled-components';
 
+import LikeButton from '../../components/LikeComponent';
+import SectorTitleBox from '../../components/SectorTitleBoxComponent';
+import StaffListBox from '../../components/StaffListBox';
+
 const MainContainer = styled.div`
   min-width: 1280px;
   margin: 0 auto;
@@ -85,18 +89,6 @@ const PosterImg = styled.img`
   border-radius: 12px;
 `;
 
-const LikeBox = styled.div`
-  width: 50px;
-  text-align: center;
-  cursor: default;
-`;
-
-const LikeButton = styled.img`
-  width: 50px;
-  height: 45px;
-  cursor: pointer;
-`;
-
 const TitleFont = styled.p`
   font-size: 85px;
   /* font-weight: bolder; */
@@ -106,6 +98,19 @@ const TitleFont = styled.p`
 const StarImg = styled.img`
   width: 30px;
   height: 30px;
+`;
+
+const Actors = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  height: 444px;
+`;
+
+const TheaterPlace = styled.div`
+  display: flex;
+  justify-content: center;
+  height: 642px;
 `;
 
 // Font(n) 변수명 고민 필요
@@ -120,6 +125,8 @@ const Font4 = styled.p`
 `;
 
 const Play = ({ playData }) => {
+  // eslint-disable-next-line no-console
+  console.log(playData);
   return (
     <MainContainer>
       <Background />
@@ -127,10 +134,9 @@ const Play = ({ playData }) => {
         <PlayInfomation>
           <InfomationTop>
             <Font3 topInfomation>공연정보</Font3>
-            <LikeBox>
-              <LikeButton src='/svg/heart.svg' />
+            <LikeButton>
               <Font4>{playData.likes}개</Font4>
-            </LikeBox>
+            </LikeButton>
           </InfomationTop>
           <TitleFont>{playData.title}</TitleFont>
           <InfomationMain>
@@ -168,6 +174,19 @@ const Play = ({ playData }) => {
             </InfomationDetail>
           </InfomationMain>
         </PlayInfomation>
+        <hr />
+        <Actors>
+          <SectorTitleBox>
+            극단 및 배우 소개
+          </SectorTitleBox>
+          <StaffListBox actors={playData.actor} />
+        </Actors>
+        <hr />
+        <TheaterPlace>
+          <SectorTitleBox>
+            공연 장소
+          </SectorTitleBox>
+        </TheaterPlace>
       </ContentBox>
     </MainContainer>
   );
@@ -175,8 +194,9 @@ const Play = ({ playData }) => {
 
 // SSR 데이터 패치
 export async function getServerSideProps({ params }) {
+  // params는 라우터 주소에 썼떤 play.id를 받아온다
   const playData = {
-    id: params.id,
+    id: params,
     poster:
       'https://cdn.notefolio.net/img/5a/af/5aaf36082b60a519aac5db918f67fabd809ee35def6cfd2020855da5e6565db0_v1.jpg',
     title: '공연제목',
@@ -186,6 +206,28 @@ export async function getServerSideProps({ params }) {
     end_date: new Date('2021-11-01').toLocaleDateString(),
     price: 12000,
     running_time: 120,
+    actor: [
+      {
+        name: '배우1',
+        photo: null,
+        position: '조연',
+      },
+      {
+        name: '배우2',
+        photo: null,
+        position: '주인공',
+      },
+      {
+        name: '배우3',
+        photo: null,
+        position: '엑스트라',
+      },
+      {
+        name: '배우4',
+        photo: null,
+        position: '감독',
+      },
+    ],
   };
   return {
     props: { playData },
