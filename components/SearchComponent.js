@@ -138,7 +138,7 @@ const SubmitButton = styled.button`
   }
 `;
 
-const SearchComponent = () => {
+const Search = () => {
   const [selectedTarget, setSelectedTarget] = useState('play');
   const [searchTarget, setSearchTarget] = useRecoilState(searchTargetState);
   const locations = [
@@ -179,19 +179,16 @@ const SearchComponent = () => {
     },
   });
 
-  const handleClick = useCallback(
-    ({
-      nativeEvent: {
-        target: { innerText },
-      },
-    }) => {
-      const target = innerText === '연극' ? 'play' : 'troupe';
-      setSearchTarget({ ...searchTarget, target });
-      setSelectedTarget(target);
-      formik.resetForm();
+  const handleClick = ({
+    nativeEvent: {
+      target: { innerText },
     },
-    [searchTarget, setSearchTarget],
-  );
+  }) => {
+    const target = innerText === '연극' ? 'play' : 'troupe';
+    setSearchTarget({ ...searchTarget, target });
+    setSelectedTarget(target);
+    formik.resetForm();
+  };
 
   return (
     <>
@@ -266,4 +263,4 @@ const SearchComponent = () => {
   );
 };
 
-export default SearchComponent;
+export default Search;

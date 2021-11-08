@@ -83,12 +83,12 @@ const JudgeHeart = styled(Judge)`
 
 const JudgeImg = styled.img`
   height: 20px;
-  width: 21.86px;
+  width: 22px;
   margin-right: 5px;
 `;
 
 const PlayImage = styled.img`
-  margin: 0 auto 11px auto;
+  margin: 0 auto 11px;
   height: 279px;
   width: 192px;
   border-radius: 6px;
@@ -108,7 +108,7 @@ const PlayDate = styled.p`
   margin: 0;
 `;
 
-const PlayComponent = ({ play }) => {
+const Play = ({ play }) => {
   const {
     poster,
     title,
@@ -145,4 +145,4 @@ const PlayComponent = ({ play }) => {
   );
 };
 
-export default PlayComponent;
+export default Play;
