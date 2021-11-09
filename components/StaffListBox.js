@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const StaffBox = styled.div`
   width: 1015px;
@@ -10,34 +10,39 @@ const StaffBox = styled.div`
   /* 오버플로우에 따른 슬라이드 구현하기 */
   /* overflow-x: scroll; */
   p {
-  text-align: center;
+    text-align: center;
   }
 `;
 
 const StaffItem = styled.div`
   margin: 0 67px;
-    img {
-      width: 120px;
-      height: 120px;
-      min-width: 120px;
-      min-height: 120px;
-      border-radius: 100%;
-      background: #f2f2f2;
-      background-image: url(/svg/people_default.svg);
-    }
+  img {
+    width: 120px;
+    height: 120px;
+    min-width: 120px;
+    min-height: 120px;
+    border-radius: 100%;
+    background: #f2f2f2;
+    background-image: url(/svg/people_default.svg);
+  }
 `;
 
 const StaffListBox = ({ children, actors }) => {
   return (
     <StaffBox>
-      {actors && actors.map((actor) => <StaffItem id={actor.name}>
-        <img src={actor.photo ? actor.photo : '../svg/people_default.svg'} alt='배우이미지' />
-        <p>{actor.name}</p>
-        <p>{actor.position}</p>
-      </StaffItem>
-      )}
+      {actors &&
+        actors.map((actor) => (
+          <StaffItem key={actor.name}>
+            <img
+              src={actor.photo ? actor.photo : '../svg/people_default.svg'}
+              alt='배우이미지'
+            />
+            <p>{actor.name}</p>
+            <p>{actor.position}</p>
+          </StaffItem>
+        ))}
     </StaffBox>
   );
-}
+};
 
 export default StaffListBox;

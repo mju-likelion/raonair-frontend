@@ -1,9 +1,11 @@
 import { withRouter } from 'next/router';
 import styled from 'styled-components';
 
+import Comment from '../../components/Comment';
 import LikeButton from '../../components/LikeComponent';
 import SectorTitleBox from '../../components/SectorTitleBoxComponent';
 import StaffListBox from '../../components/StaffListBox';
+import Star from '../../components/Star';
 
 const MainContainer = styled.div`
   min-width: 1280px;
@@ -107,9 +109,11 @@ const Actors = styled.div`
   height: 444px;
 `;
 
-const TheaterPlace = styled.div`
+const CommentSector = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
   height: 642px;
 `;
 
@@ -125,8 +129,6 @@ const Font4 = styled.p`
 `;
 
 const Play = ({ playData }) => {
-  // eslint-disable-next-line no-console
-  console.log(playData);
   return (
     <MainContainer>
       <Background />
@@ -176,17 +178,15 @@ const Play = ({ playData }) => {
         </PlayInfomation>
         <hr />
         <Actors>
-          <SectorTitleBox>
-            극단 및 배우 소개
-          </SectorTitleBox>
+          <SectorTitleBox>극단 및 배우 소개</SectorTitleBox>
           <StaffListBox actors={playData.actor} />
         </Actors>
         <hr />
-        <TheaterPlace>
-          <SectorTitleBox>
-            공연 장소
-          </SectorTitleBox>
-        </TheaterPlace>
+        <CommentSector>
+          <SectorTitleBox>관람 후기</SectorTitleBox>
+          <Star />
+          <Comment />
+        </CommentSector>
       </ContentBox>
     </MainContainer>
   );
