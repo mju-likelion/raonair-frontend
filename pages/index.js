@@ -62,6 +62,7 @@ const Theme = styled.h4`
 `;
 
 const Home = ({ plays }) => {
+  // 스크롤에 애니메이션에 대한 고민이 필요함
   const ScrollEvent = (e) => {
     if (e.target.id === 'indie') {
       window.scrollTo(0, 1000);
@@ -74,6 +75,13 @@ const Home = ({ plays }) => {
     }
   };
 
+  const themes = [
+    { id: 'indie', name: '#인디' },
+    { id: 'newTeam', name: '#신생극단' },
+    { id: 'rank', name: '#랭킹' },
+    { id: 'proceed', name: '#진행중' },
+  ]
+
   return (
     <>
       <MainContainer>
@@ -81,46 +89,18 @@ const Home = ({ plays }) => {
         <Intro>
           <Theme>다양한 공연을 라온에어와 함께 만나보세요</Theme>
           <ul>
-            <li>
-              <button
-                type='button'
-                id='indie'
-                onClick={ScrollEvent}
-                onKeyUp={ScrollEvent}
-              >
-                #인디
-              </button>
-            </li>
-            <li>
-              <button
-                type='button'
-                id='newTeam'
-                onClick={ScrollEvent}
-                onKeyUp={ScrollEvent}
-              >
-                #신생극단
-              </button>
-            </li>
-            <li>
-              <button
-                type='button'
-                id='rank'
-                onClick={ScrollEvent}
-                onKeyUp={ScrollEvent}
-              >
-                #랭킹
-              </button>
-            </li>
-            <li>
-              <button
-                type='button'
-                id='proceed'
-                onClick={ScrollEvent}
-                onKeyUp={ScrollEvent}
-              >
-                #진행중
-              </button>
-            </li>
+            {themes.map((theme) => (
+              <li key={theme.id}>
+                <button
+                  id={theme.id}
+                  type='button'
+                  onClick={ScrollEvent}
+                  onKeyUp={ScrollEvent}
+                >
+                  {theme.name}
+                </button>
+              </li>
+            ))}
           </ul>
           <hr />
         </Intro>
