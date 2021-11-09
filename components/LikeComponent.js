@@ -13,20 +13,23 @@ const LikeButton = styled.img`
   cursor: pointer;
 `;
 
-const LikeComponent = ({ children }) => {
+const Like = ({ children }) => {
   const [isCheck, setIsCheck] = useState('');
 
   const onClickEvent = () => {
     setIsCheck(!isCheck);
     // eslint-disable-next-line no-alert
     alert(isCheck ? '좋아요 취소..' : '좋아요!');
-  }
+  };
   return (
     <LikeBox>
-      <LikeButton onClick={onClickEvent} src={isCheck ? '../svg/heart.svg' : '../svg/heart_false.svg'} />
+      <LikeButton
+        onClick={onClickEvent}
+        src={isCheck ? '../svg/heart.svg' : '../svg/heart_false.svg'}
+      />
       {children}
     </LikeBox>
   );
-}
+};
 
-export default LikeComponent;
+export default Like;

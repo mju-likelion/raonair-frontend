@@ -3,7 +3,8 @@ import styled from 'styled-components';
 const SectorTitleBox = styled.div`
   display: flex;
   margin-top: 58px;
-  &:after, &:before{
+  &:after,
+  &:before {
     content: '';
     background: #529acc;
     width: 150px;
@@ -20,12 +21,12 @@ const SectorTitle = styled.p`
   color: #222222;
 `;
 
-const SectorTitleBoxComponent = ({ children }) => {
+const SectorTheme = ({ children }) => {
   return (
     <SectorTitleBox>
       <SectorTitle>{children}</SectorTitle>
     </SectorTitleBox>
   );
-}
+};
 
-export default SectorTitleBoxComponent;
+export default SectorTheme;
