@@ -42,7 +42,7 @@ const Header = () => {
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [signupModalOpen, setSignupModalOpen] = useState(false);
 
-    // 특정 모달이 열리면 해당 모달 상태 변경 및 다른 모달 닫기
+  // 특정 모달이 열리면 해당 모달 상태 변경 및 다른 모달 닫기
   const toggleLoginModalOpen = () => {
     setLoginModalOpen(!loginModalOpen);
     setSignupModalOpen(false);
