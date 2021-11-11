@@ -17,6 +17,10 @@ const StarItem = styled.img`
   height: 48px;
   :hover {
     cursor: pointer;
+    content: url('../svg/star_hover.svg');
+  }
+  :hover :nth-child(0) {
+    content: url('../svg/star_hover.svg');
   }
 `;
 
@@ -29,11 +33,11 @@ const Star = () => {
 
   // 별점목록
   const [stars, setStars] = useState([
-    { id: 1, star_state: imgUrl[0] },
-    { id: 2, star_state: imgUrl[0] },
-    { id: 3, star_state: imgUrl[0] },
-    { id: 4, star_state: imgUrl[0] },
-    { id: 5, star_state: imgUrl[0] },
+    { id: 1, star_state: imgUrl[0], mouseEnter: false },
+    { id: 2, star_state: imgUrl[0], mouseEnter: false },
+    { id: 3, star_state: imgUrl[0], mouseEnter: false },
+    { id: 4, star_state: imgUrl[0], mouseEnter: false },
+    { id: 5, star_state: imgUrl[0], mouseEnter: false },
   ]);
 
   // 점수
@@ -43,7 +47,7 @@ const Star = () => {
   const onClickEvent = id => {
     setStars(
       stars.map(star =>
-        star.id <= id ? { ...star, star_state: imgUrl[2] } : { ...star, star_state: imgUrl[0] }
+        star.id <= id ? { ...star, star_state: imgUrl[2], mouseEnter: false } : { ...star, star_state: imgUrl[0] }
       )
     );
     setRating(id);
@@ -53,7 +57,15 @@ const Star = () => {
   const onHoverEvnet = id => {
     setStars(
       stars.map(star =>
-        star.id <= id ? { ...star, star_state: imgUrl[1] } : star
+        star.id <= id && star.star_state !== imgUrl[2] ? { ...star, mouseEnter: true } : star
+      )
+    );
+  }
+
+  const onLeaveEvent = id => {
+    setStars(
+      stars.map(star =>
+        star.id >= id ? { ...star, mouseEnter: false } : star
       )
     );
   }
@@ -63,10 +75,12 @@ const Star = () => {
       <StarList>
         {stars.map(star => (
           <StarItem
-            src={star.star_state}
+            src={star.mouseEnter ? imgUrl[1] : star.star_state}
             key={star.id}
             alt='평점'
             onClick={() => onClickEvent(star.id)}
+            onMouseEnter={() => onHoverEvnet(star.id)}
+            onMouseOutCapture={() => onLeaveEvent(star.id)}
           />
         ))}
       </StarList>
