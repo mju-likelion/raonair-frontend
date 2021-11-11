@@ -8,8 +8,11 @@ import StaffListBox from '../../components/StaffListBox';
 import Star from '../../components/Star';
 
 const MainContainer = styled.div`
+  display: inline-block;
+  width: 100%;
   min-width: 1280px;
   margin: 0 auto;
+  margin-bottom: 200px;
 `;
 
 // 그라데이션 배경
