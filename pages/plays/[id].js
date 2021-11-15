@@ -188,7 +188,7 @@ const Play = ({ playData }) => {
         <CommentSector>
           <SectorTitleBox>관람 후기</SectorTitleBox>
           <Star />
-          <Comment />
+          <Comment comments={playData.comments} />
         </CommentSector>
       </ContentBox>
     </MainContainer>
@@ -199,6 +199,7 @@ const Play = ({ playData }) => {
 export async function getServerSideProps({ params }) {
   // params는 라우터 주소에 썼떤 play.id를 받아온다
   const playData = {
+    // 연극정보
     id: params,
     poster:
       'https://cdn.notefolio.net/img/5a/af/5aaf36082b60a519aac5db918f67fabd809ee35def6cfd2020855da5e6565db0_v1.jpg',
@@ -209,6 +210,8 @@ export async function getServerSideProps({ params }) {
     end_date: new Date('2021-11-01').toLocaleDateString(),
     price: 12000,
     running_time: 120,
+
+    // 연극 출연 스태프 정보
     actor: [
       {
         name: '배우1',
@@ -231,6 +234,46 @@ export async function getServerSideProps({ params }) {
         position: '감독',
       },
     ],
+
+    // 코멘트 리스트
+    comments: [
+      {
+        id: 1,
+        nickname: 'helloWorld',
+        star: 5,
+        date: '2021-03-01',
+        content: '정말 재밌었습니다! 처음에는 좋아하는 배우님이 나오는 작품이라 봤던건데 보고나서 작품의 매력에 빠지게 됐어요! 아직 안본 분들에게 강추합니다'
+      },
+      {
+        id: 2,
+        nickname: '연극입문자',
+        star: 3,
+        date: '2021-10-11',
+        content: '재밌었어요'
+      },
+      {
+        id: 3,
+        nickname: '배우지망생',
+        star: 4,
+        date: '2021-10-25',
+        content: '생각외로 괜찮았어요'
+      },
+      {
+        id: 4,
+        nickname: '익명의이름',
+        star: 1,
+        date: '2021-11-07',
+        content: '별로였어요'
+      },
+      {
+        id: 5,
+        nickname: 'bob',
+        star: 2,
+        date: '2021-11-11',
+        content: '호불호가 갈릴 내용이었습니다'
+      },
+    ],
+
   };
   return {
     props: { playData },

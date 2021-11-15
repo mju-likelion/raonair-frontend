@@ -43,7 +43,7 @@ const Star = () => {
   // 점수
   const [rating, setRating] = useState(0);
 
-  // 별점 이미지 변화
+  // 별점 클릭 이벤트
   const onClickEvent = id => {
     setStars(
       stars.map(star =>
@@ -62,6 +62,7 @@ const Star = () => {
     );
   }
 
+  // hover 이벤트 초기화 (초기화 이벤트가 2개인데 줄일 수 없을까 고민 필요)
   const onLeaveEvent = id => {
     setStars(
       stars.map(star =>
@@ -70,9 +71,16 @@ const Star = () => {
     );
   }
 
+  // 마우스가 별점에 완전히 벗어났을 때 초기화
+  const onLeaveEvent2 = () => {
+    setStars(
+      stars.map(star => star.id && { ...star, mouseEnter: false })
+    )
+  }
+
   return (
     <>
-      <StarList>
+      <StarList onMouseLeave={() => onLeaveEvent2()}>
         {stars.map(star => (
           <StarItem
             src={star.mouseEnter ? imgUrl[1] : star.star_state}
