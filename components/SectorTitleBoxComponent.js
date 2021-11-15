@@ -13,6 +13,7 @@ const SectorTitleBox = styled.div`
     line-height: 0;
     margin: 19px;
   }
+  margin-bottom: 25px;
 `;
 
 const SectorTitle = styled.p`

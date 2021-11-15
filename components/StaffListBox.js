@@ -1,21 +1,26 @@
 import styled from 'styled-components';
 
+const StaffContainer = styled.div`
+  width: 1050px;
+  padding: 42px 67px;
+`;
+
+// 슬라이드 영역
 const StaffBox = styled.div`
   width: 1015px;
-  height: 193px;
   margin: 0 auto;
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   /* background-color: red; */
   /* 오버플로우에 따른 슬라이드 구현하기 */
-  /* overflow-x: scroll; */
+  overflow-x: scroll;
   p {
     text-align: center;
   }
 `;
 
 const StaffItem = styled.div`
-  margin: 0 67px;
+  margin: 0 35px;
   img {
     width: 120px;
     height: 120px;
@@ -29,19 +34,21 @@ const StaffItem = styled.div`
 
 const StaffListBox = ({ children, actors }) => {
   return (
-    <StaffBox>
-      {actors &&
-        actors.map((actor) => (
-          <StaffItem key={actor.name}>
-            <img
-              src={actor.photo ? actor.photo : '../svg/people_default.svg'}
-              alt='배우이미지'
-            />
-            <p>{actor.name}</p>
-            <p>{actor.position}</p>
-          </StaffItem>
-        ))}
-    </StaffBox>
+    <StaffContainer>
+      <StaffBox>
+        {actors &&
+          actors.map((actor) => (
+            <StaffItem key={actor.name}>
+              <img
+                src={actor.photo ? actor.photo : '../svg/people_default.svg'}
+                alt='배우이미지'
+              />
+              <p>{actor.name}</p>
+              <p>{actor.position}</p>
+            </StaffItem>
+          ))}
+      </StaffBox>
+    </StaffContainer>
   );
 };
 

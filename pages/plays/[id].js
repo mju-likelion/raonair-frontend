@@ -107,8 +107,9 @@ const StarImg = styled.img`
 
 const Actors = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
   height: 444px;
 `;
 
@@ -233,6 +234,21 @@ export async function getServerSideProps({ params }) {
         photo: null,
         position: '감독',
       },
+      {
+        name: '배우5',
+        photo: null,
+        position: '감독',
+      },
+      {
+        name: '배우6',
+        photo: null,
+        position: '감독',
+      },
+      {
+        name: '배우7',
+        photo: null,
+        position: '감독',
+      },
     ],
 
     // 코멘트 리스트
@@ -242,38 +258,38 @@ export async function getServerSideProps({ params }) {
         nickname: 'helloWorld',
         star: 5,
         date: '2021-03-01',
-        content: '정말 재밌었습니다! 처음에는 좋아하는 배우님이 나오는 작품이라 봤던건데 보고나서 작품의 매력에 빠지게 됐어요! 아직 안본 분들에게 강추합니다'
+        content:
+          '정말 재밌었습니다! 처음에는 좋아하는 배우님이 나오는 작품이라 봤던건데 보고나서 작품의 매력에 빠지게 됐어요! 아직 안본 분들에게 강추합니다',
       },
       {
         id: 2,
         nickname: '연극입문자',
         star: 3,
         date: '2021-10-11',
-        content: '재밌었어요'
+        content: '재밌었어요',
       },
       {
         id: 3,
         nickname: '배우지망생',
         star: 4,
         date: '2021-10-25',
-        content: '생각외로 괜찮았어요'
+        content: '생각외로 괜찮았어요',
       },
       {
         id: 4,
         nickname: '익명의이름',
         star: 1,
         date: '2021-11-07',
-        content: '별로였어요'
+        content: '별로였어요',
       },
       {
         id: 5,
         nickname: 'bob',
         star: 2,
         date: '2021-11-11',
-        content: '호불호가 갈릴 내용이었습니다'
+        content: '호불호가 갈릴 내용이었습니다',
       },
     ],
-
   };
   return {
     props: { playData },
