@@ -2,6 +2,7 @@ import { withRouter } from 'next/router';
 import styled from 'styled-components';
 
 import Comment from '../../components/Comment';
+import CommentInput from '../../components/CommentInput';
 import LikeButton from '../../components/LikeComponent';
 import SectorTitleBox from '../../components/SectorTitleBoxComponent';
 import StaffListBox from '../../components/StaffListBox';
@@ -18,6 +19,7 @@ const MainContainer = styled.div`
 // 그라데이션 배경
 const Background = styled.div`
   width: 100%;
+  min-width: 1280px;
   height: 583px;
   background: linear-gradient(to bottom, #87cbff, #ffffff);
   position: absolute;
@@ -189,6 +191,7 @@ const Play = ({ playData }) => {
         <CommentSector>
           <SectorTitleBox>관람 후기</SectorTitleBox>
           <Star />
+          <CommentInput />
           <Comment comments={playData.comments} />
         </CommentSector>
       </ContentBox>

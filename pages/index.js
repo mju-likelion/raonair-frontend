@@ -80,7 +80,7 @@ const Home = ({ plays }) => {
     { id: 'newTeam', name: '#신생극단' },
     { id: 'rank', name: '#랭킹' },
     { id: 'proceed', name: '#진행중' },
-  ]
+  ];
 
   return (
     <>

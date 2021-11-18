@@ -1,7 +1,5 @@
 import { RecoilRoot } from 'recoil';
 
-import '../styles/globals.css';
-
 import GlobalStyles from '../components/GlobalStyles';
 import Header from '../components/Header';
 
