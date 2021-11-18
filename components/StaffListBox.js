@@ -1,10 +1,20 @@
 import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
+const Container = styled.div`
+  display: flex;
+`;
+
 const StaffContainer = styled.div`
+  position: relative;
   width: 700px;
-  padding: 42px 67px;
+  /* padding: 42px 67px; */
+  margin: 42px 67px;
   overflow-x: hidden;
+  display: flex;
+  justify-content: center;
+
+  /* background-color: red; */
 `;
 
 // 슬라이드 영역
@@ -30,6 +40,11 @@ const StaffItem = styled.div`
   }
 `;
 
+const SlideBtn = styled.img`
+  // nextBtn은 이미지 회전
+  transform: ${(props) => props.nextBtn && 'rotate(180deg)'};
+`;
+
 const StaffListBox = ({ children, actors }) => {
   // 현재 슬라이드 위치를 알려줌
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -40,8 +55,6 @@ const StaffListBox = ({ children, actors }) => {
     if (currentSlide <= 0) {
       // 첫 슬라이드면 마지막 슬라이드로 이동
       setCurrentSlide(Math.round(actors.length / 4) - 1);
-      // eslint-disable-next-line no-console
-      console.log(actors.length / 4);
     } else {
       setCurrentSlide(currentSlide - 1);
     }
@@ -56,32 +69,40 @@ const StaffListBox = ({ children, actors }) => {
   };
 
   useEffect(() => {
+    // 슬라이드 애니메이션 x좌표를 n00%만큼 움직인다
     slideRef.current.style.transition = 'all 0.5s ease-in-out';
     slideRef.current.style.transform = `translateX(-${currentSlide}00%`;
   }, [currentSlide]);
 
   return (
-    <StaffContainer>
-      <StaffBox ref={slideRef}>
-        {actors &&
-          actors.map((actor) => (
-            <StaffItem key={actor.name}>
-              <img
-                src={actor.photo ? actor.photo : '../svg/people_default.svg'}
-                alt='배우이미지'
-              />
-              <p>{actor.name}</p>
-              <p>{actor.position}</p>
-            </StaffItem>
-          ))}
-      </StaffBox>
-      <button type='button' onClick={prevEvent}>
-        뒤
-      </button>
-      <button type='button' onClick={nextEvent}>
-        앞
-      </button>
-    </StaffContainer>
+    <Container>
+      <SlideBtn
+        src='../svg/slide_btn.svg'
+        alt='슬라이드이전버튼'
+        onClick={prevEvent}
+      />
+      <StaffContainer>
+        <StaffBox ref={slideRef}>
+          {actors &&
+            actors.map((actor) => (
+              <StaffItem key={actor.name}>
+                <img
+                  src={actor.photo ? actor.photo : '../svg/people_default.svg'}
+                  alt='배우이미지'
+                />
+                <p>{actor.name}</p>
+                <p>{actor.position}</p>
+              </StaffItem>
+            ))}
+        </StaffBox>
+      </StaffContainer>
+      <SlideBtn
+        src='../svg/slide_btn.svg'
+        alt='슬라이드다음버튼'
+        onClick={nextEvent}
+        nextBtn
+      />
+    </Container>
   );
 };
 
