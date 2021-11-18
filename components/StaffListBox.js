@@ -1,19 +1,17 @@
+import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 const StaffContainer = styled.div`
-  width: 1050px;
+  width: 700px;
   padding: 42px 67px;
+  overflow-x: hidden;
 `;
 
 // 슬라이드 영역
 const StaffBox = styled.div`
-  width: 1015px;
+  width: 750px;
   margin: 0 auto;
   display: flex;
-  /* justify-content: center; */
-  /* background-color: red; */
-  /* 오버플로우에 따른 슬라이드 구현하기 */
-  overflow-x: scroll;
   p {
     text-align: center;
   }
@@ -33,9 +31,38 @@ const StaffItem = styled.div`
 `;
 
 const StaffListBox = ({ children, actors }) => {
+  // 현재 슬라이드 위치를 알려줌
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const slideRef = useRef(null);
+
+  // next, prev버튼 이벤트
+  const prevEvent = () => {
+    if (currentSlide <= 0) {
+      // 첫 슬라이드면 마지막 슬라이드로 이동
+      setCurrentSlide(Math.round(actors.length / 4) - 1);
+      // eslint-disable-next-line no-console
+      console.log(actors.length / 4);
+    } else {
+      setCurrentSlide(currentSlide - 1);
+    }
+  };
+  const nextEvent = () => {
+    if (currentSlide >= actors.length / 4 - 1) {
+      // 끝까지 갔을 때
+      setCurrentSlide(0);
+    } else {
+      setCurrentSlide(currentSlide + 1);
+    }
+  };
+
+  useEffect(() => {
+    slideRef.current.style.transition = 'all 0.5s ease-in-out';
+    slideRef.current.style.transform = `translateX(-${currentSlide}00%`;
+  }, [currentSlide]);
+
   return (
     <StaffContainer>
-      <StaffBox>
+      <StaffBox ref={slideRef}>
         {actors &&
           actors.map((actor) => (
             <StaffItem key={actor.name}>
@@ -48,6 +75,12 @@ const StaffListBox = ({ children, actors }) => {
             </StaffItem>
           ))}
       </StaffBox>
+      <button type='button' onClick={prevEvent}>
+        뒤
+      </button>
+      <button type='button' onClick={nextEvent}>
+        앞
+      </button>
     </StaffContainer>
   );
 };
