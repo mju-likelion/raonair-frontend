@@ -7,28 +7,25 @@ const Container = styled.div`
 
 const StaffContainer = styled.div`
   position: relative;
-  width: 700px;
-  /* padding: 42px 67px; */
-  margin: 42px 67px;
+  width: 910px;
+  margin: 42px 0px;
   overflow-x: hidden;
   display: flex;
-  justify-content: center;
-
-  /* background-color: red; */
 `;
 
 // 슬라이드 영역
 const StaffBox = styled.div`
-  width: 750px;
+  width: 910px;
   margin: 0 auto;
   display: flex;
+  justify-self: center;
   p {
     text-align: center;
   }
 `;
 
 const StaffItem = styled.div`
-  margin: 0 35px;
+  margin: 0 31px;
   img {
     width: 120px;
     height: 120px;
@@ -54,13 +51,13 @@ const StaffListBox = ({ children, actors }) => {
   const prevEvent = () => {
     if (currentSlide <= 0) {
       // 첫 슬라이드면 마지막 슬라이드로 이동
-      setCurrentSlide(Math.round(actors.length / 4) - 1);
+      setCurrentSlide(Math.round(actors.length / 5) - 1);
     } else {
       setCurrentSlide(currentSlide - 1);
     }
   };
   const nextEvent = () => {
-    if (currentSlide >= actors.length / 4 - 1) {
+    if (currentSlide >= actors.length / 5 - 1) {
       // 끝까지 갔을 때
       setCurrentSlide(0);
     } else {
