@@ -52,7 +52,7 @@ const StaffListBox = ({ children, actors }) => {
   const prevEvent = () => {
     if (currentSlide <= 0) {
       // 첫 슬라이드면 마지막 슬라이드로 이동
-      setCurrentSlide(Math.round(actors.length / 5) - 1);
+      setCurrentSlide(Math.round(actors.length / 5));
     } else {
       setCurrentSlide(currentSlide - 1);
     }
