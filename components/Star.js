@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { useState } from 'react';
 import styled from 'styled-components';
 
@@ -24,7 +23,7 @@ const StarItem = styled.img`
   }
 `;
 
-const Star = () => {
+const Star = ({ getInputStar }) => {
   const imgUrl = [
     '../svg/star_default.svg',
     '../svg/star_hover.svg',
@@ -40,9 +39,6 @@ const Star = () => {
     { id: 5, star_state: imgUrl[0], mouseEnter: false },
   ]);
 
-  // 점수
-  const [rating, setRating] = useState(0);
-
   // 별점 클릭 이벤트
   const onClickEvent = (id) => {
     setStars(
@@ -52,7 +48,7 @@ const Star = () => {
           : { ...star, star_state: imgUrl[0] },
       ),
     );
-    setRating(id);
+    getInputStar(id);
   };
 
   // 별점 hover 이벤트

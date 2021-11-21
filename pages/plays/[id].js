@@ -1,4 +1,5 @@
 import { withRouter } from 'next/router';
+import { useState } from 'react';
 import styled from 'styled-components';
 
 import Comment from '../../components/Comment';
@@ -135,6 +136,12 @@ const Font4 = styled.p`
 `;
 
 const Play = ({ playData }) => {
+  // 별점을 받아 코멘트 정보로 전달
+  const [inputStar, setInputStar] = useState(0);
+  const getInputStar = (getStar) => {
+    setInputStar(getStar);
+  };
+
   return (
     <MainContainer>
       <Background />
@@ -190,8 +197,8 @@ const Play = ({ playData }) => {
         <hr />
         <CommentSector>
           <SectorTitleBox>관람 후기</SectorTitleBox>
-          <Star />
-          <CommentInput />
+          <Star getInputStar={getInputStar} />
+          <CommentInput inputStar={inputStar} />
           <Comment comments={playData.comments} />
         </CommentSector>
       </ContentBox>
