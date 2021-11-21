@@ -1,4 +1,5 @@
 import { useFormik } from 'formik';
+import { useState } from 'react';
 import styled from 'styled-components';
 
 const CommentInputBox = styled.div`
@@ -19,7 +20,7 @@ const CommentInputBox = styled.div`
 
 const InputForm = styled.form`
   width: 678px;
-  overflow: scroll;
+  /* overflow: scroll; */
 `;
 
 const InputBox = styled.textarea`
@@ -44,9 +45,10 @@ const FormBtn = styled.button`
   border: 1px #fff solid;
   border-radius: 12px;
   cursor: pointer;
+  color: #fff;
 `;
 
-const CommentInput = ({ inputStar }) => {
+const CommentInput = ({ inputStar, cancelCommentInput, resetComment }) => {
   const formik = useFormik({
     initialValues: {
       comment: '',
@@ -55,6 +57,7 @@ const CommentInput = ({ inputStar }) => {
     onSubmit: (values) => {
       // eslint-disable-next-line no-alert
       alert(JSON.stringify(values, null, 2));
+      resetComment();
     },
   });
 
@@ -63,12 +66,17 @@ const CommentInput = ({ inputStar }) => {
       <p>리뷰도 남겨주실거죠?</p>
       <InputForm onSubmit={formik.handleSubmit}>
         <InputBox type='text' {...formik.getFieldProps('comment')} />
-        <InputBox type='text' {...formik.getFieldProps('star')} />
+        {/* props를 어떻게 input값으로 받아올지 고민필요 */}
+        {/* <InputBox type='text' {...formik.getFieldProps('star')} /> */}
         <SubmitBox>
           <FormBtn type='submit' aria-label='리뷰제출'>
             리뷰제출
           </FormBtn>
-          <FormBtn type='button' aria-label='리뷰제출'>
+          <FormBtn
+            type='button'
+            aria-label='리뷰취소'
+            onClick={cancelCommentInput}
+          >
             취소
           </FormBtn>
         </SubmitBox>

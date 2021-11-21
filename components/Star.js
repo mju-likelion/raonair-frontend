@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState, forwardRef, useImperativeHandle } from 'react';
 import styled from 'styled-components';
 
 const StarList = styled.div`
@@ -23,7 +23,7 @@ const StarItem = styled.img`
   }
 `;
 
-const Star = ({ getInputStar }) => {
+const Star = ({ getInputStar, popupCommentInput }) => {
   const imgUrl = [
     '../svg/star_default.svg',
     '../svg/star_hover.svg',
@@ -39,8 +39,8 @@ const Star = ({ getInputStar }) => {
     { id: 5, star_state: imgUrl[0], mouseEnter: false },
   ]);
 
-  // 별점 클릭 이벤트
-  const onClickEvent = (id) => {
+  // 별점 클릭, 코멘트 입력창 트리거 이벤트\
+  const onClickEvent = (id = 0) => {
     setStars(
       stars.map((star) =>
         star.id <= id
@@ -49,6 +49,7 @@ const Star = ({ getInputStar }) => {
       ),
     );
     getInputStar(id);
+    popupCommentInput();
   };
 
   // 별점 hover 이벤트

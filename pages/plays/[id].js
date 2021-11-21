@@ -1,5 +1,5 @@
 import { withRouter } from 'next/router';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import styled from 'styled-components';
 
 import Comment from '../../components/Comment';
@@ -142,6 +142,27 @@ const Play = ({ playData }) => {
     setInputStar(getStar);
   };
 
+  // 코멘트 입력창 트리거
+  const [popupComment, setpopupComment] = useState(false);
+
+  const popupCommentInput = () => {
+    if (popupComment === false) setpopupComment(true); // 클릭시 코맨트 입력창 나타남
+  };
+
+  // 코멘트 취소 이벤트
+  const cancelCommentInput = () => {
+    if (popupComment === true && confirm('정말 끝내시겠습니까?')) {
+      setpopupComment(false);
+      setInputStar(0);
+    }
+  };
+
+  // 리뷰 등록 후 초기화
+  const resetComment = () => {
+    setpopupComment(false);
+    setInputStar(0);
+  };
+
   return (
     <MainContainer>
       <Background />
@@ -197,8 +218,22 @@ const Play = ({ playData }) => {
         <hr />
         <CommentSector>
           <SectorTitleBox>관람 후기</SectorTitleBox>
-          <Star getInputStar={getInputStar} />
-          <CommentInput inputStar={inputStar} />
+          <Star
+            getInputStar={getInputStar}
+            popupCommentInput={popupCommentInput}
+          />
+          {/*
+            별점을 클릭하면 코멘트 입력창이 나오도록 처리
+            로그인 구현 후 로그인 확인, 코멘트 등록 유무 확인 기능 추가 필요
+            등록 후 별점 이미지 초기화 필요
+           */}
+          {popupComment && (
+            <CommentInput
+              inputStar={inputStar}
+              cancelCommentInput={cancelCommentInput}
+              resetComment={resetComment}
+            />
+          )}
           <Comment comments={playData.comments} />
         </CommentSector>
       </ContentBox>
