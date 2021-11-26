@@ -78,6 +78,7 @@ const Star = ({ getInputStar, popupCommentInput }) => {
   };
 
   return (
+    // 리액트 MUI 라이브러리 활용 고려
     <>
       <StarList onMouseLeave={() => onLeaveEvent2()}>
         {stars.map((star) => (

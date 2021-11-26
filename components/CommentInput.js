@@ -19,16 +19,20 @@ const CommentInputBox = styled.div`
 `;
 
 const InputForm = styled.form`
-  width: 678px;
+  width: 852px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   /* overflow: scroll; */
 `;
 
 const InputBox = styled.textarea`
   width: 678px;
-  height: 201px;
+  height: 100px;
   border: 1px #49b0ff solid;
   border-radius: 12px;
   margin: 25px auto 18px;
+  padding: 30px;
 `;
 
 const SubmitBox = styled.div`

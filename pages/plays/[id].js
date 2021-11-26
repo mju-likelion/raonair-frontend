@@ -309,7 +309,7 @@ export async function getServerSideProps({ params }) {
       {
         id: 2,
         nickname: '연극입문자',
-        star: 3,
+        star: 3.5,
         date: '2021-10-11',
         content: '재밌었어요',
       },
