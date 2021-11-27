@@ -54,6 +54,13 @@ const FormBtn = styled.button`
   color: #fff;
 `;
 
+const Ratings = styled(Rating)`
+  // 별 사이즈 커스터마이징
+  span {
+    font-size: 50px;
+  }
+`;
+
 const CommentInput = ({
   inputStar,
   cancelCommentInput,
@@ -76,7 +83,7 @@ const CommentInput = ({
     <CommentInputBox>
       <p>리뷰도 남겨주실거죠?</p>
       <InputForm onSubmit={formik.handleSubmit}>
-        <Rating
+        <Ratings
           defaultValue={0}
           precision={0.5}
           value={inputStar}

@@ -1,3 +1,4 @@
+import { Rating } from '@mui/material';
 import styled from 'styled-components';
 
 const CommentBox = styled.div`
@@ -29,16 +30,11 @@ const CommentInnerTop = styled.div`
   margin-bottom: 19px;
 `;
 
-const StarBox = styled.div`
-  width: 250px;
-  height: 50px;
-  background: url('../svg/star_default.svg');
-`;
-
-const Star = styled.div`
-  width: ${(props) => props.rate && `${props.rate}px`};
-  height: 50px;
-  background: url('../svg/star.svg');
+const Ratings = styled(Rating)`
+  // 별 사이즈 커스터마이징
+  span {
+    font-size: 50px;
+  }
 `;
 
 const Commnet = ({ comments }) => {
@@ -48,10 +44,7 @@ const Commnet = ({ comments }) => {
       {comments.map((comment) => (
         <CommentItem key={comment.id}>
           <CommentInnerTop>
-            {/* StarBox에 기본 이미지를 주고 평점에 따라 star 이미지를 덮어씌움 */}
-            <StarBox>
-              <Star rate={comment.star * 50} />
-            </StarBox>
+            <Ratings defaultValue={comment.star} readOnly precision={0.5} />
             <p>
               {comment.nickname} | {comment.date}
             </p>
