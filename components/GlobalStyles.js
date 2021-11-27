@@ -16,6 +16,7 @@ const GlobalStyle = createGlobalStyle`
   }
   a {
     text-decoration: none;
+    color: #222;
   }
   p {
     margin: 0;

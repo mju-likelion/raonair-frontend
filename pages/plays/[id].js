@@ -159,12 +159,8 @@ const Play = ({ playData }) => {
   const [popupComment, setpopupComment] = useState(false);
 
   const popupCommentInput = () => {
-    if (popupComment === false) setpopupComment(true); // 클릭시 코맨트 입력창 나타남
-  };
-
-  // 코멘트 취소 이벤트
-  const cancelCommentInput = () => {
-    if (popupComment === true && confirm('정말 끝내시겠습니까?')) {
+    if (popupComment === false) setpopupComment(true);
+    else if (popupComment === true && confirm('정말 끝내시겠습니까?')) {
       setpopupComment(false);
       setInputStar(0);
     }
@@ -176,10 +172,9 @@ const Play = ({ playData }) => {
     setInputStar(0);
   };
 
-  // 별점 클릭, 코멘트 입력창 트리거 이벤트
+  // 자식에서 부모 state 조절을 위한 이벤트
   const onClickStar = (value) => {
     setInputStar(value);
-    popupCommentInput();
   };
 
   return (
@@ -244,7 +239,7 @@ const Play = ({ playData }) => {
           {popupComment && (
             <CommentInput
               inputStar={inputStar}
-              cancelCommentInput={cancelCommentInput}
+              popupCommentInput={popupCommentInput}
               resetComment={resetComment}
               onClickStar={onClickStar}
             />
@@ -316,7 +311,7 @@ export async function getServerSideProps({ params }) {
       {
         id: 1,
         nickname: 'helloWorld',
-        star: 5,
+        star: 10,
         date: '2021-03-01',
         content:
           '정말 재밌었습니다! 처음에는 좋아하는 배우님이 나오는 작품이라 봤던건데 보고나서 작품의 매력에 빠지게 됐어요! 아직 안본 분들에게 강추합니다',
@@ -324,14 +319,14 @@ export async function getServerSideProps({ params }) {
       {
         id: 2,
         nickname: '연극입문자',
-        star: 3.5,
+        star: 7,
         date: '2021-10-11',
         content: '재밌었어요',
       },
       {
         id: 3,
         nickname: '배우지망생',
-        star: 4,
+        star: 8,
         date: '2021-10-25',
         content: '생각외로 괜찮았어요',
       },

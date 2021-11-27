@@ -44,7 +44,7 @@ const Commnet = ({ comments }) => {
       {comments.map((comment) => (
         <CommentItem key={comment.id}>
           <CommentInnerTop>
-            <Ratings defaultValue={comment.star} readOnly precision={0.5} />
+            <Ratings defaultValue={comment.star / 2} readOnly precision={0.5} />
             <p>
               {comment.nickname} | {comment.date}
             </p>

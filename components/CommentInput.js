@@ -63,16 +63,18 @@ const Ratings = styled(Rating)`
 
 const CommentInput = ({
   inputStar,
-  cancelCommentInput,
+  popupCommentInput,
   resetComment,
   onClickStar,
 }) => {
   const formik = useFormik({
     initialValues: {
       comment: '',
-      star: inputStar,
+      star: 0,
     },
     onSubmit: (values) => {
+      // eslint-disable-next-line no-param-reassign
+      values.star *= 2;
       // eslint-disable-next-line no-alert
       alert(JSON.stringify(values, null, 2));
       resetComment();
@@ -86,24 +88,23 @@ const CommentInput = ({
         <Ratings
           defaultValue={0}
           precision={0.5}
-          value={inputStar}
-          size='large'
-          onChange={(event, newValue) => {
-            onClickStar(newValue);
-          }}
+          // value={inputStar}
+          // onChange={(event, newValue) => {
+          //   onClickStar(newValue * 2);
+          // }}
           {...formik.getFieldProps('star')}
         />
         <InputBox type='text' {...formik.getFieldProps('comment')} />
         <SubmitBox>
-          <FormBtn type='submit' aria-label='리뷰제출'>
-            리뷰제출
-          </FormBtn>
           <FormBtn
             type='button'
             aria-label='리뷰취소'
-            onClick={cancelCommentInput}
+            onClick={popupCommentInput}
           >
             취소
+          </FormBtn>
+          <FormBtn type='submit' aria-label='리뷰제출'>
+            리뷰제출
           </FormBtn>
         </SubmitBox>
       </InputForm>
