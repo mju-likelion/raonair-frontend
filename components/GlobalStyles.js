@@ -13,7 +13,6 @@ const GlobalStyle = createGlobalStyle`
   }
   * {
     font-family: "Spoqa Han Sans Neo", 'Noto Sans KR';
-    color: #222222;
   }
   a {
     text-decoration: none;

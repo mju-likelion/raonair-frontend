@@ -7,7 +7,7 @@ import CommentInput from '../../components/CommentInput';
 import LikeButton from '../../components/LikeComponent';
 import SectorTitleBox from '../../components/SectorTitleBoxComponent';
 import StaffListBox from '../../components/StaffListBox';
-import Star from '../../components/Star';
+// import Star from '../../components/Star';
 
 const MainContainer = styled.div`
   display: inline-block;
@@ -124,6 +124,22 @@ const CommentSector = styled.div`
   height: 642px;
 `;
 
+const CommentPostingBtn = styled.button`
+  width: 357px;
+  font-size: 36px;
+  font-weight: bold;
+  color: #fff;
+  background: #49b0ff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: ease-out 0.3s;
+  padding: 8px 0px;
+  :hover {
+    background: #529acc;
+  }
+`;
+
 // Font(n) 변수명 고민 필요
 const Font3 = styled.p`
   font-size: 30px;
@@ -138,9 +154,6 @@ const Font4 = styled.p`
 const Play = ({ playData }) => {
   // 별점을 받아 코멘트 정보로 전달
   const [inputStar, setInputStar] = useState(0);
-  const getInputStar = (getStar) => {
-    setInputStar(getStar);
-  };
 
   // 코멘트 입력창 트리거
   const [popupComment, setpopupComment] = useState(false);
@@ -161,6 +174,12 @@ const Play = ({ playData }) => {
   const resetComment = () => {
     setpopupComment(false);
     setInputStar(0);
+  };
+
+  // 별점 클릭, 코멘트 입력창 트리거 이벤트
+  const onClickStar = (value) => {
+    setInputStar(value);
+    popupCommentInput();
   };
 
   return (
@@ -218,20 +237,16 @@ const Play = ({ playData }) => {
         <hr />
         <CommentSector>
           <SectorTitleBox>관람 후기</SectorTitleBox>
-          <Star
-            getInputStar={getInputStar}
-            popupCommentInput={popupCommentInput}
-          />
-          {/*
-            별점을 클릭하면 코멘트 입력창이 나오도록 처리
-            로그인 구현 후 로그인 확인, 코멘트 등록 유무 확인 기능 추가 필요
-            등록 후 별점 이미지 초기화 필요
-           */}
+          <CommentPostingBtn onClick={popupCommentInput}>
+            재밌게 보셨나요?
+          </CommentPostingBtn>
+          {/* <Star onClickStar={onClickStar} inputStar={inputStar} /> */}
           {popupComment && (
             <CommentInput
               inputStar={inputStar}
               cancelCommentInput={cancelCommentInput}
               resetComment={resetComment}
+              onClickStar={onClickStar}
             />
           )}
           <Comment comments={playData.comments} />

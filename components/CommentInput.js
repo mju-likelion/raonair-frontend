@@ -1,5 +1,6 @@
+import { Rating } from '@mui/material';
 import { useFormik } from 'formik';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 const CommentInputBox = styled.div`
@@ -23,6 +24,7 @@ const InputForm = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   /* overflow: scroll; */
 `;
 
@@ -52,7 +54,12 @@ const FormBtn = styled.button`
   color: #fff;
 `;
 
-const CommentInput = ({ inputStar, cancelCommentInput, resetComment }) => {
+const CommentInput = ({
+  inputStar,
+  cancelCommentInput,
+  resetComment,
+  onClickStar,
+}) => {
   const formik = useFormik({
     initialValues: {
       comment: '',
@@ -69,9 +76,17 @@ const CommentInput = ({ inputStar, cancelCommentInput, resetComment }) => {
     <CommentInputBox>
       <p>리뷰도 남겨주실거죠?</p>
       <InputForm onSubmit={formik.handleSubmit}>
+        <Rating
+          defaultValue={0}
+          precision={0.5}
+          value={inputStar}
+          size='large'
+          onChange={(event, newValue) => {
+            onClickStar(newValue);
+          }}
+          {...formik.getFieldProps('star')}
+        />
         <InputBox type='text' {...formik.getFieldProps('comment')} />
-        {/* props를 어떻게 input값으로 받아올지 고민필요 */}
-        {/* <InputBox type='text' {...formik.getFieldProps('star')} /> */}
         <SubmitBox>
           <FormBtn type='submit' aria-label='리뷰제출'>
             리뷰제출
