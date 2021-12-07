@@ -1,34 +1,63 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<p align='center'><img src='./public/logo/HorizontalLogo(light).svg' width='450px' /></p>
 
-## Getting Started
+<h1 align='center'>RaonAir</h1>
+<h3 align='center'>연극 홍보, 공유 웹 서비스</h3>
 
-First, run the development server:
+## 💭 RaonAir는
 
+라온에어는 '즐거운' 이라는 뜻을 가진 순우리말 '라온'과 '온에어'를 합한 뜻으로,
+
+연극을 홍보하고 공유할 수 있으며 궁극적으로 연극 문화와 산업을 활성화를 목표로 합니다
+
+## 🕹 Demo
+
+[Not Working](미완)
+
+### [Local]
 ```bash
 npm run dev
 # or
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📸 Feature
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+#### [메인 페이지]
+- 인기순, 현재 진행중인 공연, 신생 극단 공연, 소규묘 극단 공연의 추천
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+#### [극단/연극 페이지]
+- 극단 좋아요
+- 별점 및 평가
+- 잘못된 정보 수정 요청
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+#### [검색 페이지]
+- 검색 결과를 Infinite Scroll로 표시
 
-## Learn More
+#### [공통]
+- 모달창을 이용한 로그인, 회원가입
+- 연극, 극단 타입별 검색할 수 있는 검색 컴포넌트
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠 Stack
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Frontend
+- JavaScript
+- Next.js, React
+- Styled-Components
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Backend
+- Node.js
+- MySQL
 
-## Deploy on Vercel
+### DevOps
+- Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 👩‍💻 Team
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- [Mentor] 유예빈
+- [DevOps] 김윤기
+- [Backend] 강민정
+- [Backend] 이준석
+- [Frontend] 배한조
+
+## 🤝 Backend
+[Backend Repo](https://github.com/mju-likelion/raonair-backend)
