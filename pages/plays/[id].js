@@ -306,10 +306,11 @@ export async function getServerSideProps({ params }) {
       },
     ],
 
-    // 코멘트 리스트
+    // 코멘트 리스트, 페이징을 위한 page 요소가 필요함
     comments: [
       {
         id: 1,
+        page: 1,
         nickname: 'helloWorld',
         star: 10,
         date: '2021-03-01',
@@ -318,6 +319,7 @@ export async function getServerSideProps({ params }) {
       },
       {
         id: 2,
+        page: 1,
         nickname: '연극입문자',
         star: 7,
         date: '2021-10-11',
@@ -325,6 +327,7 @@ export async function getServerSideProps({ params }) {
       },
       {
         id: 3,
+        page: 1,
         nickname: '배우지망생',
         star: 8,
         date: '2021-10-25',
@@ -332,6 +335,7 @@ export async function getServerSideProps({ params }) {
       },
       {
         id: 4,
+        page: 2,
         nickname: '익명의이름',
         star: 1,
         date: '2021-11-07',
@@ -339,10 +343,67 @@ export async function getServerSideProps({ params }) {
       },
       {
         id: 5,
+        page: 2,
         nickname: 'bob',
         star: 2,
         date: '2021-11-11',
         content: '호불호가 갈릴 내용이었습니다',
+      },
+      {
+        id: 6,
+        page: 2,
+        nickname: '익명6',
+        star: 5,
+        date: '2021-11-11',
+        content: '재밌었어요',
+      },
+      {
+        id: 7,
+        page: 3,
+        nickname: '익명7',
+        star: 5,
+        date: '2021-11-07',
+        content: '별로였어요',
+      },
+      {
+        id: 8,
+        page: 3,
+        nickname: '익명8',
+        star: 9,
+        date: '2021-11-11',
+        content: '매우재밌어요!!!',
+      },
+      {
+        id: 9,
+        page: 3,
+        nickname: '익명9',
+        star: 1,
+        date: '2021-11-11',
+        content: '졸았어요',
+      },
+      {
+        id: 10,
+        page: 4,
+        nickname: '익명10',
+        star: 5,
+        date: '2021-11-07',
+        content: 'ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴ',
+      },
+      {
+        id: 11,
+        page: 4,
+        nickname: '익명11',
+        star: 9,
+        date: '2021-11-11',
+        content: 'ㅁㄴㅇㅁㄴㅇ',
+      },
+      {
+        id: 12,
+        page: 4,
+        nickname: '익명12',
+        star: 1,
+        date: '2021-11-11',
+        content: 'ㅁㄴㅇ',
       },
     ],
   };
