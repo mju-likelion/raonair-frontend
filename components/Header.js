@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useState } from 'react';
 import styled from 'styled-components';
 
@@ -18,6 +19,7 @@ const HeaderLogo = styled.img`
   height: 34px;
   width: 102.34px;
   margin-left: 48px;
+  cursor: pointer;
 `;
 
 const ButtonBox = styled.div`
@@ -56,7 +58,9 @@ const Header = () => {
   return (
     <>
       <HeaderBox>
-        <HeaderLogo src='/logo/HorizontalLogo(light).svg' />
+        <Link href='/'>
+          <HeaderLogo src='/logo/HorizontalLogo(light).svg' />
+        </Link>
         <ButtonBox>
           <HeaderButton onClick={toggleLoginModalOpen}>로그인</HeaderButton>
           <HeaderButton onClick={toggleSignupModalOpen}>회원가입</HeaderButton>

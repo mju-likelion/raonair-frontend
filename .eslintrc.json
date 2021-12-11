@@ -70,6 +70,8 @@
         "extensions": [".js", ".jsx"]
       }
     ],
-    "react/prop-types": 0
+    "react/prop-types": 0,
+    "no-restricted-globals": ["error", "event", "fdescribe"],
+    "no-alert": "off"
   }
 }
