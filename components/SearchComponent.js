@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useFormik } from 'formik';
+import { useRouter } from 'next/router';
 import { useState, useCallback } from 'react';
 import { useRecoilState } from 'recoil';
 import styled, { css } from 'styled-components';
@@ -162,6 +163,7 @@ const Search = () => {
     { id: '제주', value: 'jeju' },
   ];
 
+  const router = useRouter();
   const formik = useFormik({
     initialValues: {
       searchTerm: '',
@@ -173,9 +175,11 @@ const Search = () => {
       // select: Yup.required('select'),
     }),
     onSubmit: (values) => {
-      // submit 동작 구현해야함
-      // eslint-disable-next-line no-alert
-      alert(JSON.stringify(values, null, 2));
+      router.push({
+        // 쿼리를 페이지로 전달해 검색 페이지에서 데이터를 패치한다
+        pathname: '/search/',
+        query: { keyword: values.searchTerm, type: values.select },
+      });
     },
   });
 
