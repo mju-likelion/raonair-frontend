@@ -53,6 +53,10 @@ const Plays = styled.div`
   list-style: none;
 `;
 
+const LinkWrap = styled.a`
+  margin: 0 48px;
+`;
+
 const Theme = styled.h4`
   font-size: 36px;
   font-weight: bold;
@@ -110,9 +114,9 @@ const Home = ({ plays }) => {
             {plays &&
               plays.map((play) => (
                 <Link href={`/plays/${play.id}`} key={play.id}>
-                  <a>
+                  <LinkWrap>
                     <PlayComponent play={play} />
-                  </a>
+                  </LinkWrap>
                 </Link>
               ))}
           </Plays>
@@ -123,9 +127,9 @@ const Home = ({ plays }) => {
             {plays &&
               plays.map((play) => (
                 <Link href={`/plays/${play.id}`} key={play.id}>
-                  <a>
+                  <LinkWrap>
                     <PlayComponent play={play} />
-                  </a>
+                  </LinkWrap>
                 </Link>
               ))}
           </Plays>
@@ -136,9 +140,9 @@ const Home = ({ plays }) => {
             {plays &&
               plays.map((play) => (
                 <Link href={`/plays/${play.id}`} key={play.id}>
-                  <a>
+                  <LinkWrap>
                     <PlayComponent play={play} />
-                  </a>
+                  </LinkWrap>
                 </Link>
               ))}
           </Plays>
@@ -149,9 +153,9 @@ const Home = ({ plays }) => {
             {plays &&
               plays.map((play) => (
                 <Link href={`/plays/${play.id}`} key={play.id}>
-                  <a>
+                  <LinkWrap>
                     <PlayComponent play={play} />
-                  </a>
+                  </LinkWrap>
                 </Link>
               ))}
           </Plays>

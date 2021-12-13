@@ -5,6 +5,7 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
     margin: 0;
     padding: 0;
+    min-width: 1280px;
   }
   @font-face {
     font-family: 'Spoqa Han Sans Neo';

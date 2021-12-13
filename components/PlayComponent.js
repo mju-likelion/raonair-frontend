@@ -3,17 +3,22 @@ import styled from 'styled-components';
 
 const PlayBox = styled.div`
   height: 400px;
+  min-width: 220px;
   width: 220px;
-  margin-top: 32px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  margin-right: 48px;
-  margin-left: 48px;
   box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
   border-radius: 6px;
   cursor: pointer;
   position: relative;
+  /* margin: 0 48px;
+  &:last-child {
+    margin: 0 0 0 48px;
+  }
+  &:first-child {
+    margin: 0 48px 0 0;
+  } */
 `;
 
 const DdayInner = styled.div`
