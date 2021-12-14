@@ -1,15 +1,19 @@
+import { red } from '@mui/material/colors';
 import Link from 'next/link';
 import styled from 'styled-components';
 
 import PlayComponent from './PlayComponent';
 
 const Plays = styled.div`
+  width: 1280px;
+  margin: 0 auto;
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
 `;
 
 const LinkWrap = styled.a`
   margin: 0 48px;
+  margin-bottom: 54px;
 `;
 
 const PlayList = ({ plays }) => {

@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { withRouter } from 'next/router';
 import styled from 'styled-components';
 
-import PlayComponent from '../components/PlayComponent';
+import PlayList from '../components/PlayList';
 import SearchComponent from '../components/SearchComponent';
 
 const KeyWordBox = styled.p`
@@ -17,7 +17,7 @@ const KeyWordBox = styled.p`
 const PlayListContainer = styled.div`
   margin: 0 auto;
   padding: 72px 0;
-  width: 1184px;
+  width: 1280px;
   display: flex;
   flex-direction: column;
 `;
@@ -41,13 +41,9 @@ const PlayBoxTitle = styled.div`
   }
 `;
 
-const PlayList = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-
-const LinkWrap = styled.a`
-  margin: 0 48px;
+const PlayListBox = styled.div`
+  width: 1280px;
+  margin: 0 auto;
 `;
 
 const search = ({ plays, searchData }) => {
@@ -71,15 +67,7 @@ const search = ({ plays, searchData }) => {
               <a>더보기</a>
             </Link>
           </PlayBoxTitle>
-          <PlayList>
-            {plays.map((play) => (
-              <Link href={`/plays/${play.id}`} key={play.id}>
-                <LinkWrap>
-                  <PlayComponent play={play} key={play.id} />
-                </LinkWrap>
-              </Link>
-            ))}
-          </PlayList>
+          <PlayList plays={plays} />
         </PlayBox>
         <PlayBox>
           <PlayBoxTitle>
@@ -93,15 +81,7 @@ const search = ({ plays, searchData }) => {
               <a>더보기</a>
             </Link>
           </PlayBoxTitle>
-          <PlayList>
-            {plays.map((play) => (
-              <Link href={`/plays/${play.id}`} key={play.id}>
-                <LinkWrap>
-                  <PlayComponent play={play} key={play.id} />
-                </LinkWrap>
-              </Link>
-            ))}
-          </PlayList>
+          <PlayList plays={plays} />
         </PlayBox>
         <PlayBox>
           <PlayBoxTitle>
@@ -115,15 +95,7 @@ const search = ({ plays, searchData }) => {
               <a>더보기</a>
             </Link>
           </PlayBoxTitle>
-          <PlayList>
-            {plays.map((play) => (
-              <Link href={`/plays/${play.id}`} key={play.id}>
-                <LinkWrap>
-                  <PlayComponent play={play} key={play.id} />
-                </LinkWrap>
-              </Link>
-            ))}
-          </PlayList>
+          <PlayList plays={plays} />
         </PlayBox>
       </PlayListContainer>
     </>

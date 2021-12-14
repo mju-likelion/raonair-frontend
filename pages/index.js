@@ -45,10 +45,6 @@ const Section = styled.div`
   }
 `;
 
-const LinkWrap = styled.a`
-  margin: 0 48px;
-`;
-
 const Theme = styled.h4`
   font-size: 36px;
   font-weight: bold;
