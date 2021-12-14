@@ -62,7 +62,14 @@ const search = ({ plays, searchData }) => {
         <PlayBox>
           <PlayBoxTitle>
             <p>진행중</p>
-            <a href='#'>더보기</a>
+            <Link
+              href={{
+                pathname: '/searchMoreList',
+                query: { type: 'on-going', searchKeyword: keyword },
+              }}
+            >
+              <a>더보기</a>
+            </Link>
           </PlayBoxTitle>
           <PlayList>
             {plays.map((play) => (
@@ -77,7 +84,14 @@ const search = ({ plays, searchData }) => {
         <PlayBox>
           <PlayBoxTitle>
             <p>상영 예정</p>
-            <a href='#'>더보기</a>
+            <Link
+              href={{
+                pathname: '/searchMoreList',
+                query: { type: 'to-be', searchKeyword: keyword },
+              }}
+            >
+              <a>더보기</a>
+            </Link>
           </PlayBoxTitle>
           <PlayList>
             {plays.map((play) => (
@@ -92,7 +106,14 @@ const search = ({ plays, searchData }) => {
         <PlayBox>
           <PlayBoxTitle>
             <p>지난 공연</p>
-            <a href='#'>더보기</a>
+            <Link
+              href={{
+                pathname: '/searchMoreList',
+                query: { type: 'closed', searchKeyword: keyword },
+              }}
+            >
+              <a>더보기</a>
+            </Link>
           </PlayBoxTitle>
           <PlayList>
             {plays.map((play) => (
