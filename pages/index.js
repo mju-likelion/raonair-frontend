@@ -62,25 +62,18 @@ const Theme = styled.h4`
 `;
 
 const Home = ({ plays }) => {
-  // 스크롤에 애니메이션에 대한 고민이 필요함
-  const ScrollEvent = (e) => {
-    if (e.target.id === 'indie') {
-      window.scrollTo(0, 1000);
-    } else if (e.target.id === 'newTeam') {
-      window.scrollTo(0, 1700);
-    } else if (e.target.id === 'rank') {
-      window.scrollTo(0, 2400);
-    } else {
-      window.scrollTo(0, 3000);
-    }
-  };
-
   const themes = [
-    { id: 'indie', name: '#인디' },
-    { id: 'newTeam', name: '#신생극단' },
-    { id: 'rank', name: '#랭킹' },
-    { id: 'proceed', name: '#진행중' },
+    { id: 'indie', name: '#인디', index: 0 },
+    { id: 'newTeam', name: '#신생극단', index: 1 },
+    { id: 'rank', name: '#랭킹', index: 2 },
+    { id: 'proceed', name: '#진행중', index: 3 },
   ];
+
+  const ScrollEvent = (e) => {
+    const target = themes.filter((item) => item.id === e.target.id);
+    const scrollValue = target[0].index * 600 + 1000;
+    window.scrollTo({ top: scrollValue, behavior: 'smooth' });
+  };
 
   return (
     <>
