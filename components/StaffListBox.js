@@ -38,7 +38,7 @@ const StaffItem = styled.div`
 `;
 
 const SlideBtn = styled.img`
-  // nextBtn은 이미지 회전
+  /* nextBtn 이미지 회전 */
   transform: ${(props) => props.nextBtn && 'rotate(180deg)'};
   cursor: pointer;
 `;
