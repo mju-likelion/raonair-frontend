@@ -3,34 +3,18 @@ import Link from 'next/link';
 import { withRouter } from 'next/router';
 import styled from 'styled-components';
 
-import PlayComponent from '../components/PlayComponent';
+// import PlayComponent from '../components/PlayComponent';
+import PlayList from '../components/PlayList';
 
 const PlayListContainer = styled.div`
   width: 1182px;
   margin: 54px auto;
 `;
 
-const PlayList = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-
-const LinkWrap = styled.a`
-  margin: 0 48px;
-`;
-
 const searchMoreList = ({ plays }) => {
   return (
     <PlayListContainer>
-      <PlayList>
-        {plays.map((play) => (
-          <Link href={`/plays/${play.id}`} key={play.id}>
-            <LinkWrap>
-              <PlayComponent play={play} key={play.id} />
-            </LinkWrap>
-          </Link>
-        ))}
-      </PlayList>
+      <PlayList plays={plays} />
     </PlayListContainer>
   );
 };

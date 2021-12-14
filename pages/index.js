@@ -3,6 +3,7 @@ import Link from 'next/link';
 import styled from 'styled-components';
 
 import PlayComponent from '../components/PlayComponent';
+import PlayList from '../components/PlayList';
 import SearchComponent from '../components/SearchComponent';
 
 const MainContainer = styled.div`
@@ -42,15 +43,6 @@ const Section = styled.div`
   &:nth-child(odd) {
     background-color: #f6f6f6;
   }
-`;
-
-const Plays = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 1120px;
-  height: 400px;
-  list-style: none;
 `;
 
 const LinkWrap = styled.a`
@@ -110,55 +102,19 @@ const Home = ({ plays }) => {
         </Intro>
         <Section>
           <Theme>INDIE</Theme>
-          <Plays>
-            {plays &&
-              plays.map((play) => (
-                <Link href={`/plays/${play.id}`} key={play.id}>
-                  <LinkWrap>
-                    <PlayComponent play={play} />
-                  </LinkWrap>
-                </Link>
-              ))}
-          </Plays>
+          <PlayList plays={plays} />
         </Section>
         <Section>
           <Theme>NEW TEAM'S PLAY</Theme>
-          <Plays>
-            {plays &&
-              plays.map((play) => (
-                <Link href={`/plays/${play.id}`} key={play.id}>
-                  <LinkWrap>
-                    <PlayComponent play={play} />
-                  </LinkWrap>
-                </Link>
-              ))}
-          </Plays>
+          <PlayList plays={plays} />
         </Section>
         <Section>
           <Theme>RANKING</Theme>
-          <Plays>
-            {plays &&
-              plays.map((play) => (
-                <Link href={`/plays/${play.id}`} key={play.id}>
-                  <LinkWrap>
-                    <PlayComponent play={play} />
-                  </LinkWrap>
-                </Link>
-              ))}
-          </Plays>
+          <PlayList plays={plays} />
         </Section>
         <Section>
           <Theme>PROCEEDING</Theme>
-          <Plays>
-            {plays &&
-              plays.map((play) => (
-                <Link href={`/plays/${play.id}`} key={play.id}>
-                  <LinkWrap>
-                    <PlayComponent play={play} />
-                  </LinkWrap>
-                </Link>
-              ))}
-          </Plays>
+          <PlayList plays={plays} />
         </Section>
       </MainContainer>
     </>
