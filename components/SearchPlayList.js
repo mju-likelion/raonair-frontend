@@ -12,14 +12,6 @@ const KeyWordBox = styled.p`
   }
 `;
 
-const PlayListContainer = styled.div`
-  margin: 0 auto;
-  padding: 72px 0;
-  width: 1280px;
-  display: flex;
-  flex-direction: column;
-`;
-
 const PlayBox = styled.div`
   width: 100%;
   margin: 50px 0;
@@ -39,10 +31,13 @@ const PlayBoxTitle = styled.div`
   }
 `;
 
-const SearchPlayList = ({ keyword, plays }) => {
+const SearchPlayList = ({ searchTarget, searchDatas }) => {
+  const { keyword, type } = searchTarget;
+
   return (
-    <PlayListContainer>
+    <>
       <KeyWordBox>
+        <span>'{type}'</span> 지역&nbsp;
         <span>'{keyword}'</span> 검색 결과
       </KeyWordBox>
       <PlayBox>
@@ -57,7 +52,7 @@ const SearchPlayList = ({ keyword, plays }) => {
             <a>더보기</a>
           </Link>
         </PlayBoxTitle>
-        <PlayList plays={plays} />
+        <PlayList plays={searchDatas} />
       </PlayBox>
       <PlayBox>
         <PlayBoxTitle>
@@ -71,7 +66,7 @@ const SearchPlayList = ({ keyword, plays }) => {
             <a>더보기</a>
           </Link>
         </PlayBoxTitle>
-        <PlayList plays={plays} />
+        <PlayList plays={searchDatas} />
       </PlayBox>
       <PlayBox>
         <PlayBoxTitle>
@@ -85,9 +80,9 @@ const SearchPlayList = ({ keyword, plays }) => {
             <a>더보기</a>
           </Link>
         </PlayBoxTitle>
-        <PlayList plays={plays} />
+        <PlayList plays={searchDatas} />
       </PlayBox>
-    </PlayListContainer>
+    </>
   );
 };
 
