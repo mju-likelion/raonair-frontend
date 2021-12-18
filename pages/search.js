@@ -1,28 +1,59 @@
-import Link from 'next/link';
 import { withRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import SearchComponent from '../components/SearchComponent';
 import SearchPlayList from '../components/SearchPlayList';
+import SearchTroupeList from '../components/SearchTroupeList';
 
-const search = ({ plays, searchData }) => {
-  const { keyword, type } = searchData;
+const ListContainer = styled.div`
+  margin: 0 auto;
+  padding: 72px 0;
+  width: 1280px;
+  display: flex;
+  flex-direction: column;
+`;
+
+const search = ({ searchDatas, searchTarget }) => {
+  const { keyword, type } = searchTarget;
+  const [searchType, setSearchType] = useState('play');
+
+  useEffect(() => {
+    if (type === 'normal' || type === 'student') {
+      setSearchType('troupe');
+    } else {
+      setSearchType('play');
+    }
+  }, [type]);
+
   return (
     <>
       <SearchComponent />
-      <SearchPlayList plays={plays} keyword={keyword} />
+      <ListContainer>
+        {searchType === 'play' ? (
+          <SearchPlayList
+            searchDatas={searchDatas}
+            searchTarget={searchTarget}
+          />
+        ) : (
+          <SearchTroupeList
+            searchDatas={searchDatas}
+            searchTarget={searchTarget}
+          />
+        )}
+      </ListContainer>
     </>
   );
 };
 
 export async function getServerSideProps({ query }) {
   // 쿼리 정보를 검색 컴포넌트에서 가져와 axios로 데이터 패치하자
-  const searchData = {
+  const searchTarget = {
     keyword: query.keyword,
     type: query.type,
   };
   // 더미데이터
-  const plays = [
+  const searchDatas = [
     {
       id: 1,
       poster:
@@ -62,7 +93,7 @@ export async function getServerSideProps({ query }) {
     },
   ];
   return {
-    props: { searchData, plays },
+    props: { searchTarget, searchDatas },
   };
 }
 
