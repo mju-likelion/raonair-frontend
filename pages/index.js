@@ -131,7 +131,7 @@ export async function getServerSideProps() {
       id: 1,
       poster:
         'https://cdn.notefolio.net/img/5a/af/5aaf36082b60a519aac5db918f67fabd809ee35def6cfd2020855da5e6565db0_v1.jpg',
-      title: 'title',
+      title: '한여름밤의 꿈',
       likes: 10,
       star_avg: 3.5,
       start_date: new Date('2021-07-01').toLocaleDateString(),
@@ -139,8 +139,9 @@ export async function getServerSideProps() {
     },
     {
       id: 2,
-      poster: null,
-      title: 'title2',
+      poster:
+        'http://kpenews.com/Files/4/News/202004/114_20200422233333060.JPG',
+      title: '렁스',
       likes: 5,
       star_avg: 3.5,
       start_date: new Date('2021-08-28').toLocaleDateString(),
@@ -148,19 +149,21 @@ export async function getServerSideProps() {
     },
     {
       id: 3,
-      poster: null,
-      title: 'title3',
-      likes: 0,
-      star_avg: 0,
+      poster:
+        'http://www.job-post.co.kr/news/photo/202110/37086_35174_2649.jpg',
+      title: '과학하는 마음',
+      likes: 7,
+      star_avg: 4,
       start_date: new Date('2021.09.01').toLocaleDateString(),
       end_date: null,
     },
     {
       id: 4,
-      poster: null,
-      title: 'title4',
-      likes: 0,
-      star_avg: 0,
+      poster:
+        'http://www.newsfreezone.co.kr/news/photo/201907/119453_105123_503.jpg',
+      title: 'One More',
+      likes: 3,
+      star_avg: 3.8,
       start_date: new Date('2021.11.31').toLocaleDateString(),
       end_date: null,
     },

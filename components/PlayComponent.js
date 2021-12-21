@@ -54,12 +54,12 @@ const DdayInner = styled.div`
 
 const Dday = styled.div`
   background-color: #000000b3;
-  height: 270px;
+  height: 280px;
   width: 192px;
   border-radius: 6px;
   margin: 0 auto;
   position: absolute;
-  top: 45px;
+  top: 40px;
   left: 14px;
   opacity: 0;
   transition: 1s;
@@ -94,7 +94,7 @@ const JudgeImg = styled.img`
 
 const PlayImage = styled.img`
   margin: 0 auto 11px;
-  height: 279px;
+  height: 280px;
   width: 192px;
   border-radius: 6px;
 `;
@@ -137,8 +137,7 @@ const Play = ({ play }) => {
           {likes}
         </JudgeHeart>
       </JudgeBox>
-      {/* 포스터 이미지 구현 후 수정 필요 */}
-      <PlayImage src={poster || '/svg/poster_default.svg'} />
+      <PlayImage src={poster || '/svg/poster_test.svg'} />
       <PlayTitle>{title}</PlayTitle>
       <PlayDate>{`${startDate} ~ ${endDate || '별도 안내'}`}</PlayDate>
       <Dday>

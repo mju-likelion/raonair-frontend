@@ -1,5 +1,6 @@
-import Link from 'next/link';
 import styled from 'styled-components';
+
+import TroupeComponenet from './TroupeComponent';
 
 const TitleSector = styled.div`
   display: flex;
@@ -29,20 +30,13 @@ const SearchTroupeList = ({ searchTarget, searchDatas }) => {
     <>
       <TitleSector>
         <KeyWordBox>
-          <span>'{type}'</span> 지역&nbsp;
+          <span>'{type}'</span> 극단&nbsp;
           <span>'{keyword}'</span> 검색 결과
         </KeyWordBox>
-        {/* 링크 더보기 수정요망 */}
-        <Link
-          href={{
-            pathname: '/searchMoreList',
-            query: { type: 'on-going', searchKeyword: keyword },
-          }}
-        >
-          <a>더보기</a>
-        </Link>
       </TitleSector>
-      <p>연극검색결과입니다</p>
+      {searchDatas.map((troupe) => (
+        <TroupeComponenet troupe={troupe} key={troupe.id} />
+      ))}
     </>
   );
 };

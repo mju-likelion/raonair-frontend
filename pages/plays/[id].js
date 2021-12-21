@@ -270,29 +270,33 @@ export async function getServerSideProps({ params }) {
     // 연극 출연 스태프 정보
     actor: [
       {
-        name: '배우1',
-        photo: null,
+        name: '이익준',
+        photo:
+          'https://search.pstatic.net/common?type=f&size=210x236&quality=90&direct=true&src=https%3A%2F%2Fcsearch-phinf.pstatic.net%2F20210729_92%2F1627528260198Oo5kG_JPEG%2F60_18839944_main_image_new_1627528260149.jpg',
+        position: '주연',
+      },
+      {
+        name: '최송화',
+        photo:
+          'https://search.pstatic.net/common?type=f&size=210x236&quality=90&direct=true&src=https%3A%2F%2Fcsearch-phinf.pstatic.net%2F20210729_84%2F1627529163250ECITm_JPEG%2F60_18840167_main_image_new_1627529163239.jpg',
         position: '조연',
       },
       {
-        name: '배우2',
-        photo: null,
-        position: '주인공',
+        name: '김준완',
+        photo:
+          'https://search.pstatic.net/common?type=f&size=210x236&quality=90&direct=true&src=https%3A%2F%2Fcsearch-phinf.pstatic.net%2F20210729_17%2F1627528731967ygtPt_JPEG%2F60_18840125_main_image_new_1627528731941.jpg',
+        position: '조연',
       },
       {
-        name: '배우3',
-        photo: null,
-        position: '엑스트라',
+        name: '이정원',
+        photo:
+          'https://search.pstatic.net/common?type=f&size=210x236&quality=90&direct=true&src=https%3A%2F%2Fcsearch-phinf.pstatic.net%2F20210729_40%2F1627519801787DgiDu_JPEG%2F60_main_image_new_1627519801726.jpg',
+        position: '조연',
       },
       {
-        name: '배우4',
+        name: '이우정',
         photo: null,
-        position: '감독',
-      },
-      {
-        name: '배우5',
-        photo: null,
-        position: '감독',
+        position: '극본',
       },
       {
         name: '배우6',
