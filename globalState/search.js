@@ -19,3 +19,4 @@ export const getSearchTargetState = selector({
 });
 
 // export default { searchConditionState, getSearchOption };
+// export default searchTargetState;

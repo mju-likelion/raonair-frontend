@@ -39,7 +39,13 @@ const SearchPlayList = ({ searchTarget, searchDatas }) => {
   const { keyword, type } = searchTarget;
   const locations = useRecoilValue(locationState);
   const translateName = locations.filter((location) => location.value === type);
-  const locationType = translateName[0].id;
+  const [locationType, setLocationType] = useState('전체');
+
+  useEffect(() => {
+    if (translateName.length === 1) {
+      setLocationType(translateName[0].id);
+    }
+  }, [type]);
 
   return (
     <>

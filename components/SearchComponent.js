@@ -98,9 +98,9 @@ const OptionBox = styled.form`
 `;
 
 const OptionTitle = styled.p`
-  /* margin-top: 27px; */
   margin-bottom: 14px;
   font-weight: normal;
+  display: flex;
 `;
 
 const OptionInput = styled.input`
@@ -140,6 +140,11 @@ const SubmitButton = styled.button`
   }
 `;
 
+const FormikErrorMessage = styled.div`
+  color: red;
+  margin-left: 20px;
+`;
+
 const Search = () => {
   const [selectedTarget, setSelectedTarget] = useState('play');
   const [searchTarget, setSearchTarget] = useRecoilState(searchTargetState);
@@ -152,9 +157,8 @@ const Search = () => {
       select: '',
     },
     validationSchema: Yup.object({
-      // 유효성 검증 할 필요가 있는지 고민 필요
       // searchTerm: Yup.string().required('searchTerm'),
-      // select: Yup.required('select'),
+      select: Yup.string().required('타입을 선택해 주세요!'),
     }),
     onSubmit: (values) => {
       router.push({
@@ -204,7 +208,14 @@ const Search = () => {
             </SearchOption>
             <VerticalLine />
             <SearchOption>
-              <OptionTitle>지역</OptionTitle>
+              <OptionTitle>
+                지역
+                {formik.touched.select && formik.errors.select ? (
+                  <FormikErrorMessage>
+                    {formik.errors.select}
+                  </FormikErrorMessage>
+                ) : null}
+              </OptionTitle>
               <OptionSelect name='select' {...formik.getFieldProps('select')}>
                 <option value=''>지역을 선택해 주세요</option>
                 {locations.map((loc) => (
@@ -232,7 +243,14 @@ const Search = () => {
             </SearchOption>
             <VerticalLine />
             <SearchOption>
-              <OptionTitle>타입</OptionTitle>
+              <OptionTitle>
+                타입
+                {formik.touched.select && formik.errors.select ? (
+                  <FormikErrorMessage>
+                    {formik.errors.select}
+                  </FormikErrorMessage>
+                ) : null}
+              </OptionTitle>
               <OptionSelect name='select' {...formik.getFieldProps('select')}>
                 <option value=''>극단 타입을 선택해 주세요</option>
                 <option value='normal'>일반 극단</option>
