@@ -99,6 +99,7 @@ export async function getServerSideProps({ query }) {
   ];
 
   // 연극 검색 결과 데이터(API 패치 후 searchDatas와 통합하기)
+  // type은 프론트에서 처리가 아닌 API에서 처리함, 무한스크롤 구현 필요
   const troupeDatas = [
     {
       id: 1,

@@ -6,6 +6,7 @@ const TitleSector = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 56px;
   a {
     font-size: 20px;
     color: #49b0ff;
@@ -13,6 +14,14 @@ const TitleSector = styled.div`
       color: #529acc;
     }
   }
+`;
+
+const TroupeList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  width: 1184px;
+  padding: 0 32px;
+  /* background-color: green; */
 `;
 
 const KeyWordBox = styled.p`
@@ -34,9 +43,11 @@ const SearchTroupeList = ({ searchTarget, searchDatas }) => {
           <span>'{keyword}'</span> 검색 결과
         </KeyWordBox>
       </TitleSector>
-      {searchDatas.map((troupe) => (
-        <TroupeComponenet troupe={troupe} key={troupe.id} />
-      ))}
+      <TroupeList>
+        {searchDatas.map((troupe) => (
+          <TroupeComponenet troupe={troupe} key={troupe.id} />
+        ))}
+      </TroupeList>
     </>
   );
 };
