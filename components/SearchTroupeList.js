@@ -21,7 +21,6 @@ const TroupeList = styled.div`
   flex-wrap: wrap;
   width: 1184px;
   padding: 0 32px;
-  /* background-color: green; */
 `;
 
 const KeyWordBox = styled.p`
@@ -35,11 +34,12 @@ const KeyWordBox = styled.p`
 
 const SearchTroupeList = ({ searchTarget, searchDatas }) => {
   const { keyword, type } = searchTarget;
+  const troupeType = type === 'normal' ? '일반' : '학생';
   return (
     <>
       <TitleSector>
         <KeyWordBox>
-          <span>'{type}'</span> 극단&nbsp;
+          <span>'{troupeType}'</span> 극단&nbsp;
           <span>'{keyword}'</span> 검색 결과
         </KeyWordBox>
       </TitleSector>

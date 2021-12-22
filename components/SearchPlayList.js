@@ -1,5 +1,9 @@
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
+
+import locationState from '../globalState/locations';
 
 import PlayList from './PlayList';
 
@@ -33,11 +37,14 @@ const PlayBoxTitle = styled.div`
 
 const SearchPlayList = ({ searchTarget, searchDatas }) => {
   const { keyword, type } = searchTarget;
+  const locations = useRecoilValue(locationState);
+  const translateName = locations.filter((location) => location.value === type);
+  const locationType = translateName[0].id;
 
   return (
     <>
       <KeyWordBox>
-        <span>'{type}'</span> 지역&nbsp;
+        <span>'{locationType}'</span> 지역&nbsp;
         <span>'{keyword}'</span> 검색 결과
       </KeyWordBox>
       <PlayBox>

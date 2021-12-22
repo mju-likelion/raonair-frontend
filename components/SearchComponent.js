@@ -1,11 +1,12 @@
 import axios from 'axios';
 import { useFormik } from 'formik';
 import { useRouter } from 'next/router';
-import { useState, useCallback } from 'react';
-import { useRecoilState } from 'recoil';
+import { useState } from 'react';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import styled, { css } from 'styled-components';
 import * as Yup from 'yup';
 
+import locationState from '../globalState/locations';
 import { searchTargetState } from '../globalState/search';
 
 const Background = styled.div`
@@ -142,26 +143,7 @@ const SubmitButton = styled.button`
 const Search = () => {
   const [selectedTarget, setSelectedTarget] = useState('play');
   const [searchTarget, setSearchTarget] = useRecoilState(searchTargetState);
-  const locations = [
-    // api는 페이지에서만 가능함 고민 필요
-    { id: '서울', value: 'seoul' },
-    { id: '경기', value: 'gyeonggi' },
-    { id: '인천', value: 'incheon' },
-    { id: '부산', value: 'busan' },
-    { id: '광주', value: 'gwangju' },
-    { id: '대구', value: 'deagu' },
-    { id: '대전', value: 'deajeon' },
-    { id: '울산', value: 'ulsan' },
-    { id: '세종', value: 'sejong' },
-    { id: '강원', value: 'gangwon' },
-    { id: '충북', value: 'chungbuk' },
-    { id: '충남', value: 'chungnam' },
-    { id: '전북', value: 'jeonbuk' },
-    { id: '전남', value: 'jeonnam' },
-    { id: '경북', value: 'gyeongbuk' },
-    { id: '경남', value: 'gyeongnam' },
-    { id: '제주', value: 'jeju' },
-  ];
+  const locations = useRecoilValue(locationState);
 
   const router = useRouter();
   const formik = useFormik({
