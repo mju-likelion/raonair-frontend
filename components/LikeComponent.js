@@ -2,9 +2,10 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 const LikeBox = styled.div`
-  width: 50px;
-  text-align: center;
   cursor: default;
+  p {
+    text-align: center;
+  }
 `;
 
 const LikeButton = styled.img`
@@ -27,7 +28,7 @@ const Like = ({ children }) => {
         onClick={onClickEvent}
         src={isCheck ? '../svg/heart.svg' : '../svg/heart_false.svg'}
       />
-      {children}
+      <p>{children}</p>
     </LikeBox>
   );
 };
