@@ -3,6 +3,7 @@ import Link from 'next/link';
 import styled from 'styled-components';
 
 import PlayComponent from '../components/PlayComponent';
+import PlayList from '../components/PlayList';
 import SearchComponent from '../components/SearchComponent';
 
 const MainContainer = styled.div`
@@ -42,15 +43,6 @@ const Section = styled.div`
   &:nth-child(odd) {
     background-color: #f6f6f6;
   }
-`;
-
-const Plays = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 1120px;
-  height: 400px;
-  list-style: none;
 `;
 
 const Theme = styled.h4`
@@ -99,55 +91,19 @@ const Home = ({ plays }) => {
         </Intro>
         <Section>
           <Theme>INDIE</Theme>
-          <Plays>
-            {plays &&
-              plays.map((play) => (
-                <Link href={`/plays/${play.id}`} key={play.id}>
-                  <a>
-                    <PlayComponent play={play} />
-                  </a>
-                </Link>
-              ))}
-          </Plays>
+          <PlayList plays={plays} />
         </Section>
         <Section>
           <Theme>NEW TEAM'S PLAY</Theme>
-          <Plays>
-            {plays &&
-              plays.map((play) => (
-                <Link href={`/plays/${play.id}`} key={play.id}>
-                  <a>
-                    <PlayComponent play={play} />
-                  </a>
-                </Link>
-              ))}
-          </Plays>
+          <PlayList plays={plays} />
         </Section>
         <Section>
           <Theme>RANKING</Theme>
-          <Plays>
-            {plays &&
-              plays.map((play) => (
-                <Link href={`/plays/${play.id}`} key={play.id}>
-                  <a>
-                    <PlayComponent play={play} />
-                  </a>
-                </Link>
-              ))}
-          </Plays>
+          <PlayList plays={plays} />
         </Section>
         <Section>
           <Theme>PROCEEDING</Theme>
-          <Plays>
-            {plays &&
-              plays.map((play) => (
-                <Link href={`/plays/${play.id}`} key={play.id}>
-                  <a>
-                    <PlayComponent play={play} />
-                  </a>
-                </Link>
-              ))}
-          </Plays>
+          <PlayList plays={plays} />
         </Section>
       </MainContainer>
     </>
@@ -168,7 +124,7 @@ export async function getServerSideProps() {
       id: 1,
       poster:
         'https://cdn.notefolio.net/img/5a/af/5aaf36082b60a519aac5db918f67fabd809ee35def6cfd2020855da5e6565db0_v1.jpg',
-      title: 'title',
+      title: '한여름밤의 꿈',
       likes: 10,
       star_avg: 3.5,
       start_date: new Date('2021-07-01').toLocaleDateString(),
@@ -176,8 +132,9 @@ export async function getServerSideProps() {
     },
     {
       id: 2,
-      poster: null,
-      title: 'title2',
+      poster:
+        'http://kpenews.com/Files/4/News/202004/114_20200422233333060.JPG',
+      title: '렁스',
       likes: 5,
       star_avg: 3.5,
       start_date: new Date('2021-08-28').toLocaleDateString(),
@@ -185,19 +142,21 @@ export async function getServerSideProps() {
     },
     {
       id: 3,
-      poster: null,
-      title: 'title3',
-      likes: 0,
-      star_avg: 0,
+      poster:
+        'http://www.job-post.co.kr/news/photo/202110/37086_35174_2649.jpg',
+      title: '과학하는 마음',
+      likes: 7,
+      star_avg: 4,
       start_date: new Date('2021.09.01').toLocaleDateString(),
       end_date: null,
     },
     {
       id: 4,
-      poster: null,
-      title: 'title4',
-      likes: 0,
-      star_avg: 0,
+      poster:
+        'http://www.newsfreezone.co.kr/news/photo/201907/119453_105123_503.jpg',
+      title: 'One More',
+      likes: 3,
+      star_avg: 3.8,
       start_date: new Date('2021.11.31').toLocaleDateString(),
       end_date: null,
     },

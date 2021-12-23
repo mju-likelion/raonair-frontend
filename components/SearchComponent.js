@@ -1,10 +1,12 @@
 import axios from 'axios';
 import { useFormik } from 'formik';
-import { useState, useCallback } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import styled, { css } from 'styled-components';
 import * as Yup from 'yup';
 
+import locationState from '../globalState/locations';
 import { searchTargetState } from '../globalState/search';
 
 const Background = styled.div`
@@ -96,9 +98,9 @@ const OptionBox = styled.form`
 `;
 
 const OptionTitle = styled.p`
-  /* margin-top: 27px; */
   margin-bottom: 14px;
   font-weight: normal;
+  display: flex;
 `;
 
 const OptionInput = styled.input`
@@ -138,44 +140,32 @@ const SubmitButton = styled.button`
   }
 `;
 
+const FormikErrorMessage = styled.div`
+  color: red;
+  margin-left: 20px;
+`;
+
 const Search = () => {
   const [selectedTarget, setSelectedTarget] = useState('play');
   const [searchTarget, setSearchTarget] = useRecoilState(searchTargetState);
-  const locations = [
-    // api는 페이지에서만 가능함 고민 필요
-    { id: '서울', value: 'seoul' },
-    { id: '경기', value: 'gyeonggi' },
-    { id: '인천', value: 'incheon' },
-    { id: '부산', value: 'busan' },
-    { id: '광주', value: 'gwangju' },
-    { id: '대구', value: 'deagu' },
-    { id: '대전', value: 'deajeon' },
-    { id: '울산', value: 'ulsan' },
-    { id: '세종', value: 'sejong' },
-    { id: '강원', value: 'gangwon' },
-    { id: '충북', value: 'chungbuk' },
-    { id: '충남', value: 'chungnam' },
-    { id: '전북', value: 'jeonbuk' },
-    { id: '전남', value: 'jeonnam' },
-    { id: '경북', value: 'gyeongbuk' },
-    { id: '경남', value: 'gyeongnam' },
-    { id: '제주', value: 'jeju' },
-  ];
+  const locations = useRecoilValue(locationState);
 
+  const router = useRouter();
   const formik = useFormik({
     initialValues: {
       searchTerm: '',
       select: '',
     },
     validationSchema: Yup.object({
-      // 유효성 검증 할 필요가 있는지 고민 필요
       // searchTerm: Yup.string().required('searchTerm'),
-      // select: Yup.required('select'),
+      select: Yup.string().required('타입을 선택해 주세요!'),
     }),
     onSubmit: (values) => {
-      // submit 동작 구현해야함
-      // eslint-disable-next-line no-alert
-      alert(JSON.stringify(values, null, 2));
+      router.push({
+        // 쿼리를 페이지로 전달해 검색 페이지에서 데이터를 패치한다
+        pathname: '/search/',
+        query: { keyword: values.searchTerm, type: values.select },
+      });
     },
   });
 
@@ -218,7 +208,14 @@ const Search = () => {
             </SearchOption>
             <VerticalLine />
             <SearchOption>
-              <OptionTitle>지역</OptionTitle>
+              <OptionTitle>
+                지역
+                {formik.touched.select && formik.errors.select ? (
+                  <FormikErrorMessage>
+                    {formik.errors.select}
+                  </FormikErrorMessage>
+                ) : null}
+              </OptionTitle>
               <OptionSelect name='select' {...formik.getFieldProps('select')}>
                 <option value=''>지역을 선택해 주세요</option>
                 {locations.map((loc) => (
@@ -246,7 +243,14 @@ const Search = () => {
             </SearchOption>
             <VerticalLine />
             <SearchOption>
-              <OptionTitle>타입</OptionTitle>
+              <OptionTitle>
+                타입
+                {formik.touched.select && formik.errors.select ? (
+                  <FormikErrorMessage>
+                    {formik.errors.select}
+                  </FormikErrorMessage>
+                ) : null}
+              </OptionTitle>
               <OptionSelect name='select' {...formik.getFieldProps('select')}>
                 <option value=''>극단 타입을 선택해 주세요</option>
                 <option value='normal'>일반 극단</option>

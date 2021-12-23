@@ -3,17 +3,22 @@ import styled from 'styled-components';
 
 const PlayBox = styled.div`
   height: 400px;
+  min-width: 220px;
   width: 220px;
-  margin-top: 32px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  margin-right: 48px;
-  margin-left: 48px;
   box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
   border-radius: 6px;
   cursor: pointer;
   position: relative;
+  /* margin: 0 48px;
+  &:last-child {
+    margin: 0 0 0 48px;
+  }
+  &:first-child {
+    margin: 0 48px 0 0;
+  } */
 `;
 
 const DdayInner = styled.div`
@@ -49,12 +54,12 @@ const DdayInner = styled.div`
 
 const Dday = styled.div`
   background-color: #000000b3;
-  height: 270px;
+  height: 280px;
   width: 192px;
   border-radius: 6px;
   margin: 0 auto;
   position: absolute;
-  top: 45px;
+  top: 40px;
   left: 14px;
   opacity: 0;
   transition: 1s;
@@ -89,7 +94,7 @@ const JudgeImg = styled.img`
 
 const PlayImage = styled.img`
   margin: 0 auto 11px;
-  height: 279px;
+  height: 280px;
   width: 192px;
   border-radius: 6px;
 `;
@@ -132,8 +137,7 @@ const Play = ({ play }) => {
           {likes}
         </JudgeHeart>
       </JudgeBox>
-      {/* 포스터 이미지 구현 후 수정 필요 */}
-      <PlayImage src={poster || '/svg/poster_default.svg'} />
+      <PlayImage src={poster || '/svg/poster_test.svg'} />
       <PlayTitle>{title}</PlayTitle>
       <PlayDate>{`${startDate} ~ ${endDate || '별도 안내'}`}</PlayDate>
       <Dday>
