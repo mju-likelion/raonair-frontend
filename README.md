@@ -14,6 +14,7 @@
 [Not Working](미완)
 
 ### [Local]
+
 ```bash
 npm run dev
 # or
@@ -23,32 +24,41 @@ yarn dev
 ## 📸 Feature
 
 #### [메인 페이지]
+
 - 인기순, 현재 진행중인 공연, 신생 극단 공연, 소규묘 극단 공연의 추천
 
 #### [극단/연극 페이지]
+
 - 극단 좋아요
 - 별점 및 평가
 - 잘못된 정보 수정 요청
 
 #### [검색 페이지]
+
 - 검색 결과를 Infinite Scroll로 표시
 
 #### [공통]
+
 - 모달창을 이용한 로그인, 회원가입
 - 연극, 극단 타입별 검색할 수 있는 검색 컴포넌트
 
 ## 🛠 Stack
 
 ### Frontend
+
 - JavaScript
 - Next.js, React
+- recoil
 - Styled-Components
+- formik, Yup
 
 ### Backend
+
 - Node.js
 - MySQL
 
 ### DevOps
+
 - Vercel
 
 ## 👩‍💻 Team
@@ -60,4 +70,5 @@ yarn dev
 - [Frontend] 배한조
 
 ## 🤝 Backend
+
 [Backend Repo](https://github.com/mju-likelion/raonair-backend)
