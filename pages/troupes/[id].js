@@ -94,7 +94,7 @@ const troupes = ({ plays, staff }) => {
   );
 };
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ params }) {
   const plays = [
     {
       id: 1,

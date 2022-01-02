@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import styled from 'styled-components';
 
 import TroupeComponenet from './TroupeComponent';
@@ -45,7 +46,11 @@ const SearchTroupeList = ({ searchTarget, searchDatas }) => {
       </TitleSector>
       <TroupeList>
         {searchDatas.map((troupe) => (
-          <TroupeComponenet troupe={troupe} key={troupe.id} />
+          <Link href={`/troupes/${troupe.id}`} key={troupe.id}>
+            <a>
+              <TroupeComponenet troupe={troupe} />
+            </a>
+          </Link>
         ))}
       </TroupeList>
     </>
